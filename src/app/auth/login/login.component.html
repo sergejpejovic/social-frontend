@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-dark">
+  <div
+    class="container text-center p-4 shadow-lg rounded bg-gray-900 border-dark-700 col-lg-4 col-6"
+  >
+    <form class="form">
+      <h1 class="mb-3 text-white font-weight-bold">NetSphere</h1>
+      <p class="small text-light opacity-75">
+        Please enter your login info to continue
+      </p>
+      <div class="mb-3 text-start">
+        <label for="username" class="form-label text-white">Username: </label>
+        <div class="input-group">
+          <span class="input-group-text bg-gray-800 border-dark-700 text-light">
+            <i class="fas fa-user"></i>
+          </span>
+          <input
+            type="text"
+            id="username"
+            class="form-control bg-gray-800 border-dark-700 text-light"
+            placeholder="Enter your username:"
+            autocomplete="username"
+          />
+        </div>
+      </div>
+      <div class="mb-3 text-start">
+        <label for="password" class="form-label text-white">Password: </label>
+        <div class="input-group">
+          <span class="input-group-text bg-gray-800 border-dark-700 text-light">
+            <i class="fas fa-lock"></i>
+          </span>
+
+          <input
+            type="password"
+            id="password"
+            class="form-control bg-gray-800 border-dark-700 text-light"
+            placeholder="Enter your password:"
+            autocomplete="current-password"
+          />
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-gradient-primary w-100 mb-3 mt-3 py-2 fw-bold"
+      >
+        Login
+      </button>
+
+      <p class="text-light opacity-75">
+        Don't have an account?
+        <a
+          routerLink="/register"
+          class="text-decoration-none ps-1 link-primary"
+        >
+          <strong>Sign Up</strong>
+        </a>
+      </p>
+    </form>
+  </div>
+</div>

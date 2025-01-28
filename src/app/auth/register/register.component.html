@@ -1,0 +1,81 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-dark">
+  <div
+    class="container text-center p-4 shadow-lg rounded bg-gray-900 border-dark-700 col-lg-4 col-6"
+  >
+    <form class="form">
+      <h1 class="mb-3 text-light font-weight-bold">Sign up now</h1>
+      <p class="small text-light opacity-75">
+        Please fill out signup form to join NetSphere
+      </p>
+      <div class="row mb-3">
+        <div class="col-6">
+          <div class="input-group">
+            <span
+              class="input-group-text bg-gray-800 border-dark-700 text-light"
+            >
+              <i class="fas fa-user"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control bg-gray-800 border-dark-700 text-light"
+              placeholder="First name"
+              name="firstName"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="input-group">
+            <span
+              class="input-group-text bg-gray-800 border-dark-700 text-light"
+            >
+              <i class="fas fa-user"></i>
+            </span>
+            <input
+              type="text"
+              class="form-control bg-gray-800 border-dark-700 text-light"
+              placeholder="Last name"
+              name="lastName"
+              required
+            />
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text bg-gray-800 border-dark-700 text-light">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <input
+          type="email"
+          class="form-control bg-gray-800 border-dark-700 text-light"
+          placeholder="Email address"
+          name="emailAddress"
+          required
+        />
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text bg-gray-800 border-dark-700 text-light">
+          <i class="fas fa-lock"></i>
+        </span>
+        <input
+          type="password"
+          class="form-control bg-gray-800 border-dark-700 text-light"
+          placeholder="Password"
+          name="password"
+          required
+        />
+      </div>
+      <button class="btn btn-gradient-primary w-100 mb-3 mt-2 py-2 fw-bold">
+        SING UP
+      </button>
+      <p class="text-light opacity-75">
+        Already have an account?<a
+          routerLink="/login"
+          class="text-decoration-none ps-1 link-primary"
+        >
+          <strong>Login</strong>
+        </a>
+      </p>
+    </form>
+  </div>
+</div>
