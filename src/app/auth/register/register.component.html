@@ -19,9 +19,17 @@
               type="text"
               class="form-control bg-gray-800 border-dark-700 text-light"
               placeholder="First name"
+              [(ngModel)]="user.name"
               name="firstName"
               required
+              #firstName="ngModel"
             />
+          </div>
+          <div
+            *ngIf="firstName?.invalid && firstName?.touched"
+            class="text-danger"
+          >
+            First name is required.
           </div>
         </div>
         <div class="col-6">
@@ -35,9 +43,17 @@
               type="text"
               class="form-control bg-gray-800 border-dark-700 text-light"
               placeholder="Last name"
+              [(ngModel)]="user.surname"
               name="lastName"
               required
+              #lastName="ngModel"
             />
+          </div>
+          <div
+            *ngIf="lastName?.invalid && lastName?.touched"
+            class="text-danger"
+          >
+            Last name is required.
           </div>
         </div>
       </div>
@@ -49,9 +65,17 @@
           type="email"
           class="form-control bg-gray-800 border-dark-700 text-light"
           placeholder="Email address"
+          [(ngModel)]="user.email"
           name="emailAddress"
           required
+          #emailAddress="ngModel"
         />
+      </div>
+      <div
+        *ngIf="emailAddress?.invalid && emailAddress?.touched"
+        class="text-danger"
+      >
+        Email address is required.
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text bg-gray-800 border-dark-700 text-light">
@@ -61,18 +85,30 @@
           type="password"
           class="form-control bg-gray-800 border-dark-700 text-light"
           placeholder="Password"
+          [(ngModel)]="user.password"
           name="password"
           required
+          #password="ngModel"
         />
       </div>
-      <button class="btn btn-gradient-primary w-100 mb-3 mt-2 py-2 fw-bold">
-        SING UP
+      <div *ngIf="password?.invalid && password?.touched" class="text-danger">
+        Password is required.
+      </div>
+      <button
+        class="btn btn-gradient-primary w-100 mb-3 mt-2 py-2 fw-bold"
+        (click)="createUser()"
+        [disabled]="
+          !firstName?.valid ||
+          !lastName?.valid ||
+          !emailAddress?.valid ||
+          !password?.valid
+        "
+      >
+        SIGN UP
       </button>
       <p class="text-light opacity-75">
-        Already have an account?<a
-          routerLink="/login"
-          class="text-decoration-none ps-1 link-primary"
-        >
+        Already have an account?
+        <a routerLink="/login" class="text-decoration-none ps-1 link-primary">
           <strong>Login</strong>
         </a>
       </p>
