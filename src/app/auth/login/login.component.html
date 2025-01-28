@@ -15,7 +15,8 @@
           </span>
           <input
             type="text"
-            id="username"
+            name="name"
+            [(ngModel)]="user.name"
             class="form-control bg-gray-800 border-dark-700 text-light"
             placeholder="Enter your username:"
             autocomplete="username"
@@ -31,7 +32,8 @@
 
           <input
             type="password"
-            id="password"
+            name="password"
+            [(ngModel)]="user.password"
             class="form-control bg-gray-800 border-dark-700 text-light"
             placeholder="Enter your password:"
             autocomplete="current-password"
@@ -40,6 +42,7 @@
       </div>
       <button
         type="submit"
+        (click)="createUser()"
         class="btn btn-gradient-primary w-100 mb-3 mt-3 py-2 fw-bold"
       >
         Login

@@ -1,0 +1,8 @@
+export class User {
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+  country: string;
+  dateOfBirth: Date;
+}
