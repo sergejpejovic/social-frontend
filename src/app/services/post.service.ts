@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Post } from '../modules/Post';
+import { Post } from '../models/Post';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +10,10 @@ export class PostService {
 
   getAllPosts() {
     return this.http.get<Post[]>('http://localhost:4000/posts');
+  }
+
+  getPostsByUserId(id: number) {
+    return this.http.get<Post[]>(`http://localhost:4000/posts/user/${id}`);
   }
 
   createPost(post: Post) {

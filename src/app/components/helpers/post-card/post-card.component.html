@@ -5,12 +5,19 @@
   >
     <div class="card-body">
       <p class="card-text text-light">{{ i.text }}</p>
+
       <p class="card-text text-light">
-        <small>{{ i.createdTime | date }}</small>
+        <small>{{
+          i.createdTime ? (i.createdTime | date : "short") : "Nema datuma"
+        }}</small>
       </p>
+
       <div *ngIf="i.mediaLocation">
         <img [src]="i.mediaLocation" alt="Post Media" class="img-fluid" />
       </div>
+
+      <button class="btn btn-primary mt-2">Edit</button>
+      <button class="btn btn-danger ms-2 mt-2">Delete</button>
     </div>
   </div>
 </div>

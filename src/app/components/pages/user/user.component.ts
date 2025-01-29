@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../modules/User';
+import { User } from '../../../models/User';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service';
-import { Post } from '../../../modules/Post';
+import { Post } from '../../../models/Post';
 import { PostService } from '../../../services/post.service';
 
 @Component({
@@ -28,11 +28,15 @@ export class UserComponent implements OnInit {
         const userId = paramsData[`id`];
         this.userService.getUserById(userId).subscribe((data: any) => {
           this.user = data;
+
+          this.postService
+            .getPostsByUserId(this.user.id)
+            .subscribe((data: any) => {
+              this.post = data;
+              console.log(this.post);
+            });
         });
       }
-    });
-    this.postService.getAllPosts().subscribe((data: any) => {
-      this.post = data;
     });
   }
 }

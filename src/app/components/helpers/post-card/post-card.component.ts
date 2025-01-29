@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Post } from '../../../modules/Post';
+import { Post } from '../../../models/Post';
+import { User } from '../../../models/User';
 
 @Component({
   selector: 'app-post-card',
@@ -10,4 +11,5 @@ import { Post } from '../../../modules/Post';
 })
 export class PostCardComponent {
   @Input('item') item: Post[] = [];
+  @Input('user') user: User = new User();
 }
