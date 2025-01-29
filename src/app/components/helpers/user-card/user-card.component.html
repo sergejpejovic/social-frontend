@@ -1,0 +1,11 @@
+<div class="d-flex vh-100 bg-dark">
+  <!-- User Card (fiksna pozicija sa leve strane) -->
+  <div class="user-card bg-gray-900 border-dark-700 p-4 shadow-lg">
+    <div class="card-title text-white">{{ user.name }} {{ user.surname }}</div>
+    <div class="card-text text-light">
+      <p>Email: {{ user.email }}</p>
+      <p>Country: {{ user.country }}</p>
+      <p>Date of Birth: {{ user.dateOfBirth | date }}</p>
+    </div>
+  </div>
+</div>

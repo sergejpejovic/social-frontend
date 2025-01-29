@@ -11,4 +11,8 @@ export class UserService {
   createUser(user: User) {
     return this.http.post(`http://localhost:4000/users`, user);
   }
+
+  getUserById(id: number) {
+    return this.http.get(`http://localhost:4000/users/${id}`);
+  }
 }
