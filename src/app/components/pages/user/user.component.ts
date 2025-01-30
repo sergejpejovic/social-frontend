@@ -29,12 +29,10 @@ export class UserComponent implements OnInit {
         this.userService.getUserById(userId).subscribe((data: any) => {
           this.user = data;
 
-          this.postService
-            .getPostsByUserId(this.user.id)
-            .subscribe((data: any) => {
-              this.post = data;
-              console.log(this.post);
-            });
+          this.postService.getAllPosts().subscribe((data: any) => {
+            this.post = data;
+            console.log(this.post);
+          });
         });
       }
     });
