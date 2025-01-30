@@ -8,17 +8,20 @@
         Please enter your login info to continue
       </p>
       <div class="mb-3 text-start">
-        <label for="username" class="form-label text-white">Username: </label>
+        <label for="email" class="form-label text-white">Email: </label>
         <div class="input-group">
           <span class="input-group-text bg-gray-800 border-dark-700 text-light">
             <i class="fas fa-user"></i>
           </span>
           <input
             type="text"
-            name="name"
+            name="email"
             class="form-control bg-gray-800 border-dark-700 text-light"
-            placeholder="Enter your username:"
-            autocomplete="username"
+            placeholder="Enter your email:"
+            autocomplete="email"
+            [(ngModel)]="user.email"
+            required
+            #email="ngModel"
           />
         </div>
       </div>
@@ -35,12 +38,17 @@
             class="form-control bg-gray-800 border-dark-700 text-light"
             placeholder="Enter your password:"
             autocomplete="current-password"
+            [(ngModel)]="user.password"
+            required
+            #password="ngModel"
           />
         </div>
       </div>
       <button
         type="submit"
         class="btn btn-gradient-primary w-100 mb-3 mt-3 py-2 fw-bold"
+        (click)="onSubmit()"
+        [disabled]="!email?.valid || !password?.valid"
       >
         Login
       </button>

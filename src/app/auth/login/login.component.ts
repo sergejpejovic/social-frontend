@@ -10,4 +10,20 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {}
+export class LoginComponent implements OnInit {
+  user: User = new User();
+
+  ngOnInit(): void {}
+
+  constructor(private userService: UserService, private router: Router) {}
+
+  onSubmit() {
+    this.userService
+      .loginUser(this.user.email, this.user.password)
+      .subscribe((data: any) => {
+        console.log(data);
+        const userId = data.ID;
+        this.router.navigateByUrl(`/user/${userId}`);
+      });
+  }
+}

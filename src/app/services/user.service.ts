@@ -15,4 +15,11 @@ export class UserService {
   getUserById(id: number) {
     return this.http.get(`http://localhost:4000/users/${id}`);
   }
+
+  loginUser(email: string, password: string) {
+    return this.http.post('http://localhost:4000/users/login', {
+      email,
+      password,
+    });
+  }
 }
