@@ -2,8 +2,6 @@ import { Component, Host, Input, OnInit } from '@angular/core';
 import { Post } from '../../../models/Post';
 import { User } from '../../../models/User';
 import { PostService } from '../../../services/post.service';
-import { ActivatedRoute } from '@angular/router';
-import { UserService } from '../../../services/user.service';
 import { UserComponent } from '../../pages/user/user.component';
 
 @Component({

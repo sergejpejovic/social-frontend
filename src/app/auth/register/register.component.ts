@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   createUser() {
     this.userService.createUser(this.user).subscribe((data: any) => {
       if (data.success) {
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/auth/login');
       }
     });
   }
