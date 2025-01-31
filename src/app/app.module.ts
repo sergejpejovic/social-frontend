@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PagesModule } from './components/pages/pages.module';
 import { PagesRoutingModule } from './components/pages/pages-routing.module';
+import { HelpersModule } from './components/helpers/helpers.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { PagesRoutingModule } from './components/pages/pages-routing.module';
     AppRoutingModule,
     AuthModule,
     PagesModule,
+    HelpersModule,
     HttpClientModule,
     PagesRoutingModule,
   ],

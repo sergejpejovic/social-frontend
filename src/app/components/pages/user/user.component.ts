@@ -31,7 +31,6 @@ export class UserComponent implements OnInit {
 
           this.postService.getAllPosts().subscribe((data: any) => {
             this.post = data;
-            console.log(this.post);
           });
         });
       }

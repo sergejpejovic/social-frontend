@@ -1,23 +1,55 @@
 <div class="posts-container flex-grow-1">
   <div
-    *ngFor="let i of item"
+    *ngFor="let post of posts"
     class="post-card shadow-lg mb-3 bg-gray-900 border-dark-700"
   >
     <div class="card-body">
-      <p class="card-text text-light">{{ i.text }}</p>
-
-      <p class="card-text text-light">
-        <small>{{
-          i.createdTime ? (i.createdTime | date : "short") : "Nema datuma"
-        }}</small>
-      </p>
-
-      <div *ngIf="i.mediaLocation">
-        <img [src]="i.mediaLocation" alt="Post Media" class="img-fluid" />
+      <!-- EDIT REZIM POSTA -->
+      <div *ngIf="editingPostId === post.id; else normalView">
+        <input class="form-control mb-2" [(ngModel)]="post.text" />
+        <input class="form-control mb-2" [(ngModel)]="post.mediaLocation" />
+        <button
+          class="btn btn-success mt-2"
+          (click)="saveEdit(post)"
+          [disabled]="!post.text || !post.mediaLocation"
+        >
+          Save
+        </button>
+        <button class="btn btn-secondary ms-2 mt-2" (click)="cancelEditing()">
+          Cancel
+        </button>
       </div>
 
-      <button class="btn btn-primary mt-2">Edit</button>
-      <button class="btn btn-danger ms-2 mt-2">Delete</button>
+      <!-- NORMALNI PRIKAZ POSTA -->
+      <ng-template #normalView>
+        <p class="card-text text-light">{{ post.text }}</p>
+        <p class="card-text text-light">
+          <small>{{
+            post.createdTime
+              ? (post.createdTime | date : "short")
+              : "Nema datuma"
+          }}</small>
+        </p>
+        <div *ngIf="post.mediaLocation">
+          <img [src]="post.mediaLocation" alt="Post Media" class="img-fluid" />
+        </div>
+
+        <button
+          *ngIf="isPostOwner(post)"
+          class="btn btn-primary mt-2"
+          (click)="startEditing(post)"
+        >
+          Edit
+        </button>
+
+        <button
+          *ngIf="isPostOwner(post)"
+          class="btn btn-danger ms-2 mt-2"
+          (click)="deletePost(post.id)"
+        >
+          Delete
+        </button>
+      </ng-template>
     </div>
   </div>
 </div>

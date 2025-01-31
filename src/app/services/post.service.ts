@@ -19,4 +19,14 @@ export class PostService {
   createPost(post: Post) {
     return this.http.post('http://localhost:4000/posts', post);
   }
+
+  editPost(post: Post) {
+    return this.http.put(`http://localhost:4000/posts/${post.id}`, {
+      ...post,
+    });
+  }
+
+  deletePost(id: number) {
+    return this.http.delete(`http://localhost:4000/posts/${id}`);
+  }
 }
