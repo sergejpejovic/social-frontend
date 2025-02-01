@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PagesModule } from './components/pages/pages.module';
 import { PagesRoutingModule } from './components/pages/pages-routing.module';
@@ -14,7 +13,6 @@ import { HelpersModule } from './components/helpers/helpers.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule,
     PagesModule,
     HelpersModule,
     HttpClientModule,
