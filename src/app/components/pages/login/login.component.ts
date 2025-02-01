@@ -28,7 +28,6 @@ export class LoginComponent implements OnInit {
       if (data.success) {
         localStorage.setItem('user-token', data.token);
         const decodedToken: any = jwtDecode(data.token);
-        console.log(decodedToken);
         this.router.navigateByUrl(`/user/${decodedToken.id}`);
       } else {
         alert('Pogresni podaci');
