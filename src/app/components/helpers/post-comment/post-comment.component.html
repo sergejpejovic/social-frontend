@@ -1,3 +1,16 @@
-<div *ngFor="let comment of comments">
+<button class="btn btn-primary" (click)="addComment()">Add comment</button>
+<div *ngIf="isAddingComment">
+  <input type="text" [(ngModel)]="comment.text" />
+  <button class="btn btn-primary" (click)="saveComment()">Save</button>
+</div>
+
+<div *ngFor="let comment of comments" class="d-flex">
   <p>{{ comment.text }}</p>
+  <button
+    *ngIf="isCommentOwner(comment)"
+    class="btn btn-danger"
+    (click)="deleteComment(comment.commentId)"
+  >
+    Delete
+  </button>
 </div>

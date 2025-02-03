@@ -17,4 +17,16 @@ export class CommentService {
   getAllComments() {
     return this.http.get<CommentsModel>('http://localhost:4000/comments');
   }
+
+  createComment(comment: CommentsModel) {
+    return this.http.post('http://localhost:4000/comments', comment);
+  }
+
+  editComment(comment: CommentsModel) {
+    return this.http.put('http://localhost:4000/comments', comment);
+  }
+
+  deleteComment(commentId: number) {
+    return this.http.delete(`http://localhost:4000/comments/${commentId}`);
+  }
 }

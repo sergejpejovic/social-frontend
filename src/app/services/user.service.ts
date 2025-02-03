@@ -36,7 +36,6 @@ export class UserService {
     const tokenParts = token.split('.');
     const userDataPart = tokenParts[1];
     const user = JSON.parse(window.atob(userDataPart));
-    console.log(user);
     return user;
   }
 }
