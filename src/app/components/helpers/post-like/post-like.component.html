@@ -1,1 +1,3 @@
-<p>post-like works!</p>
+<button *ngIf="!isLiked" (click)="like(post, user)">Like</button>
+<button *ngIf="isLiked" (click)="dislike(post, user)">Dislike</button>
+<div class="text-light">{{ likesNumber }}</div>
