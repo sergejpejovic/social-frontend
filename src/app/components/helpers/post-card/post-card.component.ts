@@ -12,9 +12,11 @@ import { UserComponent } from '../../pages/user/user.component';
 })
 export class PostCardComponent {
   @Input() posts: Post[] = [];
+  post: Post = new Post();
   @Input() user: User = new User();
 
   editingPostId: number | null = null;
+  isCreatingPost: boolean = false;
 
   constructor(
     private postService: PostService,
@@ -52,5 +54,26 @@ export class PostCardComponent {
         }
       });
     }
+  }
+
+  addPost() {
+    this.isCreatingPost = true;
+  }
+
+  cancelCreating() {
+    this.isCreatingPost = false;
+    this.post = new Post();
+  }
+
+  createPost(post: Post) {
+    post.userId = this.user.id;
+    this.postService.createPost(post).subscribe((data: any) => {
+      console.log(data);
+      if (data.success) {
+        this.userComponent.ngOnInit();
+
+        this.isCreatingPost = false;
+      }
+    });
   }
 }

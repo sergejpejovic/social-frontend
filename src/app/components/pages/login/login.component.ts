@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
-import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +17,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   login() {
     if (!this.user.email || !this.user.password) {
       alert('Unesite sve podatke');
       return;
     }
-    this.userService.login(this.user).subscribe((data: any) => {
+    this.authService.login(this.user).subscribe((data: any) => {
       if (data.success) {
         localStorage.setItem('user-token', data.token);
         const decodedToken: any = jwtDecode(data.token);

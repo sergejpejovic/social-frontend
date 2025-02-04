@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
-import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   user: User = new User();
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.userService.register(this.user).subscribe((data: any) => {
+    this.authService.register(this.user).subscribe((data: any) => {
       if (data.success) {
         alert('Uspjesno ste se registrovali!');
         localStorage.setItem('user-token', data.token);

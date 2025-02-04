@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommentService } from '../../../services/comment.service';
 import { Post } from '../../../models/Post';
 import { CommentsModel } from '../../../models/CommentModel';
-import { UserService } from '../../../services/user.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-post-comment',
@@ -19,7 +19,7 @@ export class PostCommentComponent implements OnInit {
 
   constructor(
     private commentService: CommentService,
-    private userService: UserService
+    private authService: AuthService
   ) {}
   ngOnInit(): void {
     this.loadComments();
@@ -38,7 +38,7 @@ export class PostCommentComponent implements OnInit {
   }
 
   saveComment() {
-    const userData = this.userService.getUserData();
+    const userData = this.authService.getUserData();
 
     if (!userData) {
       alert('User not authenticated!');
@@ -59,7 +59,7 @@ export class PostCommentComponent implements OnInit {
   }
 
   isCommentOwner(comment: CommentsModel): boolean {
-    const currentUser = this.userService.getUserData();
+    const currentUser = this.authService.getUserData();
     return currentUser?.id === comment.userId;
   }
 
@@ -70,4 +70,17 @@ export class PostCommentComponent implements OnInit {
       }
     });
   }
+
+  // editComment(comment: CommentsModel) {
+  //   this.commentService.editComment(comment).subscribe((data: any) => {
+  //     console.log('Returned data:', data);
+  //     console.log('Current comments:', this.comments);
+  //     const index = this.comments.findIndex((p) => p.commentId === data.ID);
+  //     console.log(index);
+  //     if (index !== -1) {
+  //       this.comments[index] = data;
+  //       console.log(this.comments[index]);
+  //     }
+  //   });
+  // }
 }

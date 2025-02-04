@@ -1,4 +1,16 @@
 <div class="posts-container flex-grow-1">
+  <button (click)="addPost()" class="btn btn-primary">Add post</button>
+  <div *ngIf="isCreatingPost">
+    <input type="text" placeholder="text" [(ngModel)]="post.text" />
+    <input
+      type="text"
+      placeholder="mediaLocation"
+      [(ngModel)]="post.mediaLocation"
+    />
+    <small>Kreirano: {{ post.createdTime | date : "medium" }}</small>
+    <button (click)="createPost(post)" class="btn btn-secondary">Save</button>
+    <button (click)="cancelCreating()" class="btn btn-danger">Cancel</button>
+  </div>
   <div
     *ngFor="let post of posts"
     class="post-card shadow-lg mb-3 bg-gray-900 border-dark-700"
