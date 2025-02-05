@@ -25,8 +25,16 @@ export class RegisterComponent implements OnInit {
       !this.user.country ||
       !this.user.dateOfBirth
     ) {
-      alert('Unesite sve podatke');
+      alert('Enter all data');
       return;
+    }
+
+    if (this.user.email) {
+      alert('Email is already in use');
+    }
+
+    if (this.user.password.length < 3) {
+      alert('Password is too short...');
     }
 
     this.authService.register(this.user).subscribe((data: any) => {

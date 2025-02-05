@@ -1,5 +1,6 @@
 <div class="posts-container flex-grow-1">
-  <button (click)="addPost()" class="btn btn-primary">Add post</button>
+  <button (click)="addPost()" class="btn btn-light ms-2">Add post</button>
+
   <div *ngIf="isCreatingPost">
     <input type="text" placeholder="text" [(ngModel)]="post.text" />
     <input
@@ -13,7 +14,8 @@
   </div>
   <div
     *ngFor="let post of posts"
-    class="post-card shadow-lg mb-3 bg-gray-900 border-dark-700"
+    class="post-card mb-3 border-dark-700 w-75 rounded"
+    style="margin: 0 auto; background-color: #383c42"
   >
     <div class="card-body">
       <!-- EDIT REZIM POSTA -->
@@ -51,7 +53,7 @@
           class="btn btn-primary mt-2"
           (click)="startEditing(post)"
         >
-          Edit
+          <i class="fas fa-edit"></i>
         </button>
 
         <button
@@ -59,12 +61,25 @@
           class="btn btn-danger ms-2 mt-2"
           (click)="deletePost(post.id)"
         >
-          Delete
+          <i class="fas fa-trash"></i>
         </button>
       </ng-template>
-      <app-post-like [post]="post" [user]="user"></app-post-like>
 
-      <app-post-comment [post]="post"></app-post-comment>
+      <div class="d-flex">
+        <app-post-like [post]="post" [user]="user"></app-post-like>
+
+        <button
+          (click)="toggleCommentVisibility(post.id)"
+          class="bg-transparent border-0"
+        >
+          💬
+        </button>
+      </div>
+
+      <app-post-comment
+        *ngIf="isCommentVisible[post.id]"
+        [post]="post"
+      ></app-post-comment>
     </div>
   </div>
 </div>

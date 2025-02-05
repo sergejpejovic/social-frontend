@@ -1,9 +1,9 @@
 <div class="d-flex vh-100 bg-dark">
-  <div class="user-card-container">
+  <div class="user-card-container position-fixed" style="top: 0; left: 0">
     <app-user-card [user]="user"></app-user-card>
   </div>
 
-  <div class="posts-container flex-grow-1">
+  <div class="posts-container flex-grow-1" style="margin-left: 270px">
     <app-post-card [posts]="post" [user]="user"></app-post-card>
   </div>
 </div>

@@ -1,4 +1,5 @@
 <button class="btn btn-primary" (click)="addComment()">Add comment</button>
+
 <div *ngIf="isAddingComment">
   <input type="text" [(ngModel)]="comment.text" />
   <button class="btn btn-primary" (click)="saveComment()">Save</button>

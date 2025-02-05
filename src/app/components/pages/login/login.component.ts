@@ -21,16 +21,17 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (!this.user.email || !this.user.password) {
-      alert('Unesite sve podatke');
+      alert('Enter all data');
       return;
     }
+
     this.authService.login(this.user).subscribe((data: any) => {
       if (data.success) {
         localStorage.setItem('user-token', data.token);
         const decodedToken: any = jwtDecode(data.token);
         this.router.navigateByUrl(`/user/${decodedToken.id}`);
       } else {
-        alert('Pogresni podaci');
+        alert('Wrong data');
       }
     });
   }

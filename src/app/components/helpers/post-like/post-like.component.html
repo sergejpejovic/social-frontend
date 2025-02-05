@@ -1,3 +1,17 @@
-<button *ngIf="!isLiked" (click)="like(post, user)">Like</button>
-<button *ngIf="isLiked" (click)="dislike(post, user)">Dislike</button>
-<div class="text-light">{{ likesNumber }}</div>
+<div class="d-flex align-items-center mb-2 mt-2">
+  <div class="text-light me-2">Total likes: {{ likesNumber }}</div>
+  <button
+    *ngIf="!isLiked"
+    (click)="like(post, user)"
+    class="bg-transparent border-0"
+  >
+    👍
+  </button>
+  <button
+    *ngIf="isLiked"
+    (click)="dislike(post, user)"
+    class="bg-transparent border-0"
+  >
+    👎
+  </button>
+</div>
