@@ -1,4 +1,4 @@
-import { Component, Host, Input, OnInit } from '@angular/core';
+import { Component, Host, Input } from '@angular/core';
 import { Post } from '../../../models/Post';
 import { User } from '../../../models/User';
 import { PostService } from '../../../services/post.service';
@@ -20,6 +20,7 @@ export class PostCardComponent {
 
   constructor(
     private postService: PostService,
+
     @Host() private userComponent: UserComponent
   ) {}
 

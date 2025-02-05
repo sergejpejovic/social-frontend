@@ -37,6 +37,10 @@ export class PostCommentComponent implements OnInit {
     this.isAddingComment = true;
   }
 
+  cancelComment() {
+    this.isAddingComment = false;
+  }
+
   saveComment() {
     const userData = this.authService.getUserData();
 

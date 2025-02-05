@@ -1,17 +1,44 @@
-<button class="btn btn-primary" (click)="addComment()">Add comment</button>
+<button
+  class="btn btn-light mt-2"
+  *ngIf="!isAddingComment"
+  (click)="addComment()"
+>
+  Add comment
+</button>
 
-<div *ngIf="isAddingComment">
-  <input type="text" [(ngModel)]="comment.text" />
-  <button class="btn btn-primary" (click)="saveComment()">Save</button>
+<div *ngIf="isAddingComment" class="d-flex flex-column">
+  <input
+    type="text"
+    [(ngModel)]="comment.text"
+    placeholder="Your comment..."
+    class="w-50"
+  />
+  <div class="d-flex mt-2">
+    <button class="btn btn-primary" (click)="saveComment()" style="width: 70px">
+      Save
+    </button>
+    <button
+      class="btn btn-danger ms-2"
+      (click)="cancelComment()"
+      style="width: 70px"
+    >
+      Cancel
+    </button>
+  </div>
 </div>
 
-<div *ngFor="let comment of comments" class="d-flex">
-  <p>{{ comment.text }}</p>
+<div
+  *ngFor="let comment of comments"
+  class="d-flex align-items-center"
+  style="height: 50px"
+>
+  <p class="mb-0 text-light">{{ comment.text }}</p>
   <button
     *ngIf="isCommentOwner(comment)"
-    class="btn btn-danger"
+    class="btn ms-3"
+    style="color: red"
     (click)="deleteComment(comment.commentId)"
   >
-    Delete
+    <i class="fas fa-trash"></i>
   </button>
 </div>

@@ -1,23 +1,45 @@
-<div class="posts-container flex-grow-1">
-  <button (click)="addPost()" class="btn btn-light ms-2">Add post</button>
+<div class="posts-container flex-grow-1 bg-dark">
+  <div class="d-flex justify-content-center mt-3 mb-3">
+    <button
+      (click)="addPost()"
+      *ngIf="!isCreatingPost"
+      class="btn btn-light ms-2"
+    >
+      Add post
+    </button>
 
-  <div *ngIf="isCreatingPost">
-    <input type="text" placeholder="text" [(ngModel)]="post.text" />
-    <input
-      type="text"
-      placeholder="mediaLocation"
-      [(ngModel)]="post.mediaLocation"
-    />
-    <small>Kreirano: {{ post.createdTime | date : "medium" }}</small>
-    <button (click)="createPost(post)" class="btn btn-secondary">Save</button>
-    <button (click)="cancelCreating()" class="btn btn-danger">Cancel</button>
+    <div *ngIf="isCreatingPost" class="d-flex flex-column w-25">
+      <input type="text" placeholder="text" [(ngModel)]="post.text" />
+      <input
+        type="text"
+        placeholder="mediaLocation"
+        [(ngModel)]="post.mediaLocation"
+      />
+      <small>Kreirano: {{ post.createdTime | date : "medium" }}</small>
+      <div class="d-flex gap-3">
+        <button
+          (click)="createPost(post)"
+          class="btn btn-secondary"
+          style="width: 70px"
+        >
+          Save
+        </button>
+        <button
+          (click)="cancelCreating()"
+          class="btn btn-danger"
+          style="width: 70px"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
   </div>
   <div
     *ngFor="let post of posts"
-    class="post-card mb-3 border-dark-700 w-75 rounded"
+    class="post-card mb-3 border-dark-700 w-50 rounded"
     style="margin: 0 auto; background-color: #383c42"
   >
-    <div class="card-body">
+    <div class="card-body d-flex align-items-center flex-column">
       <!-- EDIT REZIM POSTA -->
       <div *ngIf="editingPostId === post.id; else normalView">
         <input class="form-control mb-2" [(ngModel)]="post.text" />
@@ -36,7 +58,13 @@
 
       <!-- NORMALNI PRIKAZ POSTA -->
       <ng-template #normalView>
-        <p class="card-text text-light">{{ post.text }}</p>
+        <p class="card-text text-light">
+          {{ post.text }}
+        </p>
+
+        <div *ngIf="post.mediaLocation">
+          <img [src]="post.mediaLocation" alt="Post Media" class="img-fluid" />
+        </div>
         <p class="card-text text-light">
           <small>{{
             post.createdTime
@@ -44,42 +72,42 @@
               : "Nema datuma"
           }}</small>
         </p>
-        <div *ngIf="post.mediaLocation">
-          <img [src]="post.mediaLocation" alt="Post Media" class="img-fluid" />
+
+        <div class="d-flex">
+          <app-post-like [post]="post" [user]="user"></app-post-like>
+
+          <button
+            (click)="toggleCommentVisibility(post.id)"
+            class="bg-transparent border-0 fs-5"
+          >
+            💬
+          </button>
         </div>
 
-        <button
-          *ngIf="isPostOwner(post)"
-          class="btn btn-primary mt-2"
-          (click)="startEditing(post)"
-        >
-          <i class="fas fa-edit"></i>
-        </button>
+        <app-post-comment
+          *ngIf="isCommentVisible[post.id]"
+          [post]="post"
+        ></app-post-comment>
+        <div class="d-flex">
+          <button
+            *ngIf="isPostOwner(post)"
+            class="btn mt-2 fs-5"
+            style="color: #fff"
+            (click)="startEditing(post)"
+          >
+            <i class="fas fa-edit"></i>
+          </button>
 
-        <button
-          *ngIf="isPostOwner(post)"
-          class="btn btn-danger ms-2 mt-2"
-          (click)="deletePost(post.id)"
-        >
-          <i class="fas fa-trash"></i>
-        </button>
+          <button
+            *ngIf="isPostOwner(post)"
+            class="btn mt-2 fs-5"
+            style="color: red"
+            (click)="deletePost(post.id)"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </div>
       </ng-template>
-
-      <div class="d-flex">
-        <app-post-like [post]="post" [user]="user"></app-post-like>
-
-        <button
-          (click)="toggleCommentVisibility(post.id)"
-          class="bg-transparent border-0"
-        >
-          💬
-        </button>
-      </div>
-
-      <app-post-comment
-        *ngIf="isCommentVisible[post.id]"
-        [post]="post"
-      ></app-post-comment>
     </div>
   </div>
 </div>

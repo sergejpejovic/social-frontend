@@ -1,16 +1,16 @@
-<div class="d-flex align-items-center mb-2 mt-2">
+<div class="d-flex align-items-center">
   <div class="text-light me-2">Total likes: {{ likesNumber }}</div>
   <button
     *ngIf="!isLiked"
     (click)="like(post, user)"
-    class="bg-transparent border-0"
+    class="bg-transparent border-0 fs-5"
   >
     👍
   </button>
   <button
     *ngIf="isLiked"
     (click)="dislike(post, user)"
-    class="bg-transparent border-0"
+    class="bg-transparent border-0 fs-5"
   >
     👎
   </button>
