@@ -13,6 +13,13 @@ export class UserService {
   // }
 
   getUserById(id: number) {
-    return this.http.get(`http://localhost:4000/users/${id}`);
+    return this.http.get<User>(`http://localhost:4000/users/${id}`);
+  }
+
+  updateUser(user: User) {
+    return this.http.put(`http://localhost:4000/users/${user.id}`, {
+      ...user,
+      dateOfBirth: new Date(user.dateOfBirth).toISOString().split('T')[0],
+    });
   }
 }

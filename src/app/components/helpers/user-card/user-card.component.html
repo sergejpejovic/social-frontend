@@ -13,3 +13,12 @@
     <button class="btn btn-light" (click)="logout()">Logout</button>
   </div>
 </div>
+
+<input type="text" [(ngModel)]="user.name" name="name" />
+<input type="text" [(ngModel)]="user.surname" name="surname" />
+<input type="email" [(ngModel)]="user.email" name="email" />
+<input type="password" [(ngModel)]="user.password" name="password" />
+<input type="text" [(ngModel)]="user.country" name="country" />
+<input type="date" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" />
+
+<button (click)="updateUser()">Update</button>

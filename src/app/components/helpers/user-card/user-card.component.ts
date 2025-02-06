@@ -6,17 +6,26 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-card',
   standalone: false,
-
   templateUrl: './user-card.component.html',
-  styleUrl: './user-card.component.scss',
+  styleUrls: ['./user-card.component.scss'],
 })
 export class UserCardComponent {
-  @Input('user') user: User = new User();
+  @Input() user: User = new User();
 
-  constructor(private userService: UserService, private rotuer: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   logout() {
     localStorage.clear();
-    this.rotuer.navigateByUrl('/auth/login');
+    this.router.navigateByUrl('/auth/login');
+  }
+
+  updateUser() {
+    this.userService.updateUser(this.user).subscribe((data: any) => {
+      if (data.success) {
+        console.log('Uspjesno');
+      } else {
+        console.error('Error:', data.msg);
+      }
+    });
   }
 }
