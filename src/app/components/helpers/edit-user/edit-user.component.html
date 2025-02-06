@@ -1,0 +1,55 @@
+<div
+  class="vh-100 bg-dark d-flex flex-column justify-content-center align-items-center"
+>
+  <div>
+    <h1 class="text-light fs-3 mb-4">Edit your profile</h1>
+  </div>
+  <form class="d-flex flex-column align-items-center w-50">
+    <div class="d-flex w-50">
+      <input
+        type="text"
+        class="form-control bg-d text-light mb-3 me-1"
+        [(ngModel)]="user.name"
+        name="name"
+      />
+      <input
+        type="text"
+        class="form-control bg-d text-light mb-3 ms-1"
+        [(ngModel)]="user.surname"
+        name="surname"
+      />
+    </div>
+
+    <input
+      type="email"
+      class="form-control bg-d text-light w-50 mb-3"
+      [(ngModel)]="user.email"
+      name="email"
+    />
+    <input
+      type="password"
+      class="form-control bg-d text-light w-50 mb-3"
+      [(ngModel)]="user.password"
+      name="password"
+    />
+    <input
+      type="text"
+      class="form-control bg-d text-light w-50 mb-3"
+      [(ngModel)]="user.country"
+      name="country"
+    />
+    <input
+      type="date"
+      class="form-control bg-d text-light w-50 mb-3"
+      [(ngModel)]="user.dateOfBirth"
+      name="dateOfBirth"
+    />
+
+    <div class="d-flex">
+      <button class="btn btn-primary me-3" (click)="updateUser()">Save</button>
+      <button routerLink="/user/{{ user.id }}" class="btn btn-danger">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

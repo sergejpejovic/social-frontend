@@ -18,14 +18,4 @@ export class UserCardComponent {
     localStorage.clear();
     this.router.navigateByUrl('/auth/login');
   }
-
-  updateUser() {
-    this.userService.updateUser(this.user).subscribe((data: any) => {
-      if (data.success) {
-        console.log('Uspjesno');
-      } else {
-        console.error('Error:', data.msg);
-      }
-    });
-  }
 }

@@ -5,6 +5,8 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { FormsModule } from '@angular/forms';
 import { PostLikeComponent } from './post-like/post-like.component';
 import { PostCommentComponent } from './post-comment/post-comment.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,13 +14,15 @@ import { PostCommentComponent } from './post-comment/post-comment.component';
     UserCardComponent,
     PostLikeComponent,
     PostCommentComponent,
+    EditUserComponent,
   ],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   exports: [
     PostCardComponent,
     UserCardComponent,
     PostLikeComponent,
     PostCommentComponent,
+    EditUserComponent,
   ],
 })
 export class HelpersModule {}

@@ -10,15 +10,10 @@
       <p>Country: {{ user.country }}</p>
       <p>Date of Birth: {{ user.dateOfBirth | date }}</p>
     </div>
+    <button class="btn btn-light mb-3" routerLink="/user/{{ user.id }}/edit">
+      Edit profile
+    </button>
+    <br />
     <button class="btn btn-light" (click)="logout()">Logout</button>
   </div>
 </div>
-
-<input type="text" [(ngModel)]="user.name" name="name" />
-<input type="text" [(ngModel)]="user.surname" name="surname" />
-<input type="email" [(ngModel)]="user.email" name="email" />
-<input type="password" [(ngModel)]="user.password" name="password" />
-<input type="text" [(ngModel)]="user.country" name="country" />
-<input type="date" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" />
-
-<button (click)="updateUser()">Update</button>
