@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -15,7 +15,8 @@ export class EditUserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((paramsData) => {
@@ -31,7 +32,7 @@ export class EditUserComponent implements OnInit {
   updateUser() {
     this.userService.updateUser(this.user).subscribe((data: any) => {
       if (data.success) {
-        console.log('Uspjesno');
+        this.router.navigateByUrl(`/user/${this.user.id}`);
       } else {
         console.error('Error:', data.msg);
       }
