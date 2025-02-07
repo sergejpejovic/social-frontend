@@ -68,7 +68,11 @@
         </p>
 
         <div *ngIf="post.mediaLocation">
-          <img [src]="post.mediaLocation" alt="Post Media" class="img-fluid" />
+          <img
+            [src]="post.mediaLocation"
+            alt="Post Media"
+            class="w-50 h-auto rounded d-block mx-auto mb-3"
+          />
         </div>
         <p class="card-text text-light">
           <small>{{
