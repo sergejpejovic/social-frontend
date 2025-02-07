@@ -20,13 +20,17 @@ export class PostService {
     return this.http.post('http://localhost:4000/posts', post);
   }
 
-  editPost(post: Post) {
-    return this.http.put(`http://localhost:4000/posts/${post.id}`, {
+  editPost(id: number, post: Post) {
+    return this.http.put(`http://localhost:4000/posts/${id}`, {
       ...post,
     });
   }
 
   deletePost(id: number) {
     return this.http.delete(`http://localhost:4000/posts/${id}`);
+  }
+
+  uploadImage(formData: FormData) {
+    return this.http.post('http://localhost:4000/upload', formData);
   }
 }

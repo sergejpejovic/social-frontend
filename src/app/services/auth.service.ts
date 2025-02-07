@@ -9,11 +9,11 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   register(user: User) {
-    return this.http.post('http://localhost:4000/users/register', user);
+    return this.http.post('http://localhost:4000/auth/register', user);
   }
 
   login(user: User) {
-    return this.http.post('http://localhost:4000/users/login', user);
+    return this.http.post('http://localhost:4000/auth/login', user);
   }
 
   isLoggedIn() {

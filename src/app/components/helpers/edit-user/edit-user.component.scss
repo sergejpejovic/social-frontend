@@ -1,3 +1,7 @@
 .bg-d {
   background-color: #383c42;
 }
+
+input.bg-d::placeholder {
+  color: white;
+}
