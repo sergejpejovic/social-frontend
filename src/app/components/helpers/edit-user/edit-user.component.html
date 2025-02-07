@@ -45,6 +45,10 @@
       [(ngModel)]="user.dateOfBirth"
       name="dateOfBirth"
     />
+    <div class="d-flex">
+      <label class="text-light">Profile picture</label>
+      <input type="file" (change)="setUploadedFile($event)" />
+    </div>
 
     <div class="d-flex">
       <button class="btn btn-primary me-3" (click)="updateUser()">Save</button>

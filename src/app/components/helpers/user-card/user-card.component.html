@@ -1,7 +1,10 @@
-<div class="d-flex" style="height: 60vh">
-  <div
-    class="user-card bg-gray border-dark-700 p-4 rounded mt-lg-5 ms-lg-5 mt-3 ms-3"
+<div class="d-flex w-50 align-items-center" style="height: 70vh">
   >
+  <div
+    class="d-flex flex-column align-items-center user-card bg-gray border-dark-700 p-4 rounded mt-lg-5 ms-lg-5 mt-3 ms-3"
+  >
+    <img [src]="user.mediaLocation" class="w-50 mb-3 rounded mx-auto d-block" />
+
     <div class="card-title text-light fw-bold mb-2">
       {{ user.name }} {{ user.surname }}
     </div>
@@ -10,10 +13,12 @@
       <p>Country: {{ user.country }}</p>
       <p>Date of Birth: {{ user.dateOfBirth | date }}</p>
     </div>
-    <button class="btn btn-light mb-3" routerLink="/user/{{ user.id }}/edit">
-      Edit profile
-    </button>
-    <br />
-    <button class="btn btn-light" (click)="logout()">Logout</button>
+    <div class="d-flex align-items-center justify-content-center mt-4">
+      <button class="btn btn-light me-3" routerLink="/user/{{ user.id }}/edit">
+        Edit profile
+      </button>
+
+      <button class="btn btn-light" (click)="logout()">Logout</button>
+    </div>
   </div>
 </div>

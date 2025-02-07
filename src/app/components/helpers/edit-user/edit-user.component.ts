@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditUserComponent implements OnInit {
   @Input() user: User = new User();
+  fileToUpload: any = null;
 
   constructor(
     private userService: UserService,
@@ -30,12 +31,32 @@ export class EditUserComponent implements OnInit {
   }
 
   updateUser() {
-    this.userService.updateUser(this.user).subscribe((data: any) => {
-      if (data.success) {
-        this.router.navigateByUrl(`/user/${this.user.id}`);
-      } else {
-        console.error('Error:', data.msg);
-      }
-    });
+    const formData: FormData = new FormData();
+    formData.append('img', this.fileToUpload);
+
+    if (this.fileToUpload) {
+      this.userService
+        .uploadImage(formData)
+        .subscribe((fileUploadResponse: any) => {
+          this.user.mediaLocation = `http://localhost:4000/${fileUploadResponse.filename}`;
+
+          this.userService.updateUser(this.user).subscribe((data: any) => {
+            if (data.success) {
+              console.log(this.user.mediaLocation);
+              this.router.navigateByUrl(`/user/${this.user.id}`);
+            }
+          });
+        });
+    } else {
+      this.userService.updateUser(this.user).subscribe((data: any) => {
+        if (data.success) {
+          this.router.navigateByUrl(`/user/${this.user.id}`);
+        }
+      });
+    }
+  }
+
+  setUploadedFile(event: any) {
+    this.fileToUpload = event.target.files[0];
   }
 }

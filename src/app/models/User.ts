@@ -6,4 +6,5 @@ export class User {
   password: string;
   country: string;
   dateOfBirth: Date;
+  mediaLocation: string;
 }

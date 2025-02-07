@@ -10,14 +10,8 @@
 
     <div *ngIf="isCreatingPost" class="d-flex flex-column w-25">
       <input type="text" placeholder="text" [(ngModel)]="post.text" />
-      <!-- <input
-        type="text"
-        placeholder="mediaLocation"
-        [(ngModel)]="post.mediaLocation"
-      /> -->
       <label class="text-light">Dodaj sliku</label>
       <input type="file" (change)="setUploadedFile($event)" />
-
       <small>Kreirano: {{ post.createdTime | date : "medium" }}</small>
       <div class="d-flex gap-3">
         <button
@@ -46,7 +40,6 @@
       <!-- EDIT REZIM POSTA -->
       <div *ngIf="editingPostId === post.id; else normalView">
         <input class="form-control mb-2" [(ngModel)]="post.text" />
-        <!-- <input class="form-control mb-2" [(ngModel)]="post.mediaLocation" /> -->
         <label>Dodaj sliku</label>
         <input type="file" (change)="setUploadedFile($event)" />
         <button

@@ -22,4 +22,8 @@ export class UserService {
       dateOfBirth: new Date(user.dateOfBirth).toISOString().split('T')[0],
     });
   }
+
+  uploadImage(formData: FormData) {
+    return this.http.post('http://localhost:4000/upload', formData);
+  }
 }

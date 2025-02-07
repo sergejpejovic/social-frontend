@@ -14,6 +14,7 @@ export class PostCardComponent {
   @Input() posts: Post[] = [];
   post: Post = new Post();
   @Input() user: User = new User();
+
   editingPostId: number | null = null;
   isCreatingPost: boolean = false;
   isCommentVisible: boolean[] = [];
@@ -21,7 +22,6 @@ export class PostCardComponent {
 
   constructor(
     private postService: PostService,
-
     @Host() private userComponent: UserComponent
   ) {}
 
