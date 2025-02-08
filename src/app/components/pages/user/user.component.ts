@@ -30,24 +30,16 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn() ?? false;
 
-    const tokenData = this.authService.getUserData();
-    this.userIdFromToken = tokenData ? tokenData.id : null;
-
     this.activatedRoute.params.subscribe((paramsData) => {
-      const userIdFromUrl: number = Number(paramsData[`id`]);
+      const userIdFromUrl = Number(paramsData[`id`]);
 
-      if (this.userIdFromToken === userIdFromUrl) {
-        this.userService.getUserById(userIdFromUrl).subscribe((data: any) => {
-          this.user = data;
+      this.userService.getUserById(userIdFromUrl).subscribe((data: any) => {
+        this.user = data;
 
-          this.postService.getAllPosts().subscribe((data: any) => {
-            this.post = data;
-          });
+        this.postService.getAllPosts().subscribe((data: any) => {
+          this.post = data;
         });
-      } else {
-        alert('Nemate pristup ovoj stranici.');
-        this.router.navigateByUrl('/');
-      }
+      });
     });
   }
 }

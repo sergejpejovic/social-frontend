@@ -5,10 +5,19 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EditUserComponent } from '../helpers/edit-user/edit-user.component';
+import { userAuthGuardGuard } from '../../guards/user-auth-guard.guard';
 
 const routes: Routes = [
-  { path: 'user/:id', component: UserComponent },
-  { path: 'user/:id/edit', component: EditUserComponent },
+  {
+    path: 'user/:id',
+    component: UserComponent,
+    canActivate: [userAuthGuardGuard],
+  },
+  {
+    path: 'user/:id/edit',
+    component: EditUserComponent,
+    canActivate: [userAuthGuardGuard],
+  },
   { path: 'auth/login', component: LoginComponent },
   { path: 'auth/register', component: RegisterComponent },
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },

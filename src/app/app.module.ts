@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PagesModule } from './components/pages/pages.module';
 import { PagesRoutingModule } from './components/pages/pages-routing.module';
 import { HelpersModule } from './components/helpers/helpers.module';
+import { jwtInterceptor } from './interceptors/jwt.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,13 @@ import { HelpersModule } from './components/helpers/helpers.module';
     HttpClientModule,
     PagesRoutingModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: jwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
