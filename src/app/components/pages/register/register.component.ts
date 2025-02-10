@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../../models/User';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { AdditionalsService } from '../../../services/additionals.service';
+import { Countries } from '../../../models/Countries';
 
 @Component({
   selector: 'app-register',
@@ -12,17 +14,24 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   user: User = new User();
+  countries: Countries[] = [];
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private additionalsService: AdditionalsService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAdditionals();
+  }
 
   register() {
     if (
       !this.user.name ||
       !this.user.surname ||
       !this.user.email ||
-      !this.user.country ||
+      !this.user.countryId ||
       !this.user.dateOfBirth
     ) {
       alert('Enter all data');
@@ -43,6 +52,13 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('user-token', data.token);
         this.router.navigateByUrl('/auth/login');
       }
+    });
+  }
+
+  getAdditionals() {
+    this.additionalsService.getCountries().subscribe((data: any) => {
+      this.countries = data;
+      console.log(this.countries);
     });
   }
 }

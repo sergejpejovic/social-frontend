@@ -4,7 +4,7 @@ export class User {
   surname: string;
   email: string;
   password: string;
-  country: string;
+  countryId: number;
   dateOfBirth: Date;
   mediaLocation: string;
 }

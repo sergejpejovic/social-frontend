@@ -10,7 +10,7 @@
     </div>
     <div class="card-text text-light">
       <p>Email: {{ user.email }}</p>
-      <p>Country: {{ user.country }}</p>
+      <p>Country: {{ getCountryName(user.countryId) }}</p>
       <p>Date of Birth: {{ user.dateOfBirth | date }}</p>
     </div>
     <div class="d-flex align-items-center justify-content-center mt-4">

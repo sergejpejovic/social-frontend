@@ -81,13 +81,16 @@
         <span class="input-group-text bg-gray-800 border-dark-700 text-light">
           <i class="fas fa-globe"></i>
         </span>
-        <input
-          type="text"
+
+        <select
           class="form-control bg-gray-800 border-dark-700 text-light"
-          placeholder="country"
-          [(ngModel)]="user.country"
           name="country"
-        />
+          [(ngModel)]="user.countryId"
+        >
+          <option *ngFor="let country of countries" [ngValue]="country.id">
+            {{ country.naziv }}
+          </option>
+        </select>
       </div>
 
       <div class="input-group mb-3">
