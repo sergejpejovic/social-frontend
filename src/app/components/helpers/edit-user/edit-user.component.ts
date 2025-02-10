@@ -3,6 +3,8 @@ import { User } from '../../../models/User';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { AdditionalsService } from '../../../services/additionals.service';
+import { Countries } from '../../../models/Countries';
 
 @Component({
   selector: 'app-edit-user',
@@ -13,11 +15,13 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class EditUserComponent implements OnInit {
   @Input() user: User = new User();
+  countries: Countries[] = [];
   fileToUpload: any = null;
 
   constructor(
     private userService: UserService,
     private authService: AuthService,
+    private additionalsService: AdditionalsService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) {}
@@ -32,6 +36,7 @@ export class EditUserComponent implements OnInit {
         });
       }
     });
+    this.getAdditionals();
   }
 
   updateUser() {
@@ -62,5 +67,11 @@ export class EditUserComponent implements OnInit {
 
   setUploadedFile(event: any) {
     this.fileToUpload = event.target.files[0];
+  }
+
+  getAdditionals() {
+    this.additionalsService.getCountries().subscribe((data: any) => {
+      this.countries = data;
+    });
   }
 }

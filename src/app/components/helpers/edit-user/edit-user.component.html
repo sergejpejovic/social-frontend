@@ -33,12 +33,15 @@
       name="password"
       placeholder="******"
     />
-    <input
-      type="text"
+    <select
       class="form-control bg-d text-light w-50 mb-3"
-      [(ngModel)]="user.country"
       name="country"
-    />
+      [(ngModel)]="user.countryId"
+    >
+      <option *ngFor="let country of countries" [ngValue]="country.id">
+        {{ country.naziv }}
+      </option>
+    </select>
     <input
       type="date"
       class="form-control bg-d text-light w-50 mb-3"

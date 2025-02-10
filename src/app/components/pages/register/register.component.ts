@@ -58,7 +58,6 @@ export class RegisterComponent implements OnInit {
   getAdditionals() {
     this.additionalsService.getCountries().subscribe((data: any) => {
       this.countries = data;
-      console.log(this.countries);
     });
   }
 }
