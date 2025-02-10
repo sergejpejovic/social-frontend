@@ -26,11 +26,10 @@ export class CommentService {
     return this.http.post('http://localhost:4000/comments', comment);
   }
 
-  editComment(comment: CommentsModel) {
-    return this.http.put(
-      `http://localhost:4000/comments/${comment.commentId}`,
-      { ...comment }
-    );
+  editComment(id: number, comment: CommentsModel) {
+    return this.http.put(`http://localhost:4000/comments/${id}`, {
+      ...comment,
+    });
   }
 
   deleteComment(commentId: number) {

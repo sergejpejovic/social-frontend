@@ -16,6 +16,8 @@ export class PostCommentComponent implements OnInit {
   comment: CommentsModel = new CommentsModel();
   @Input('post') post: Post;
   isAddingComment: boolean = false;
+  isEditingComment: boolean = false;
+  editingCommentId: number | null = null;
 
   constructor(
     private commentService: CommentService,
@@ -75,16 +77,25 @@ export class PostCommentComponent implements OnInit {
     });
   }
 
-  // editComment(comment: CommentsModel) {
-  //   this.commentService.editComment(comment).subscribe((data: any) => {
-  //     console.log('Returned data:', data);
-  //     console.log('Current comments:', this.comments);
-  //     const index = this.comments.findIndex((p) => p.commentId === data.ID);
-  //     console.log(index);
-  //     if (index !== -1) {
-  //       this.comments[index] = data;
-  //       console.log(this.comments[index]);
-  //     }
-  //   });
-  // }
+  edit(comment: CommentsModel) {
+    this.editingCommentId = comment.commentId;
+    this.isEditingComment = true;
+  }
+
+  cancelEdit() {
+    this.editingCommentId = null;
+    this.isEditingComment = false;
+  }
+
+  saveEdit(comment: CommentsModel) {
+    this.commentService
+      .editComment(comment.commentId, comment)
+      .subscribe((data: any) => {
+        if (data.success) {
+          this.loadComments();
+          this.editingCommentId = null;
+          this.isEditingComment = false;
+        }
+      });
+  }
 }

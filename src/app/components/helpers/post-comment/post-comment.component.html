@@ -1,44 +1,86 @@
-<button
-  class="btn btn-light mt-2"
-  *ngIf="!isAddingComment"
-  (click)="addComment()"
->
-  Add comment
-</button>
-
-<div *ngIf="isAddingComment" class="d-flex flex-column">
-  <input
-    type="text"
-    [(ngModel)]="comment.text"
-    placeholder="Your comment..."
-    class="w-50"
-  />
-  <div class="d-flex mt-2">
-    <button class="btn btn-primary" (click)="saveComment()" style="width: 70px">
-      Save
-    </button>
+<div class="d-flex flex-column align-items-center justify-content-center">
+  <ng-container *ngIf="!isEditingComment">
     <button
-      class="btn btn-danger ms-2"
-      (click)="cancelComment()"
-      style="width: 70px"
+      class="btn btn-light mt-2"
+      *ngIf="!isAddingComment"
+      (click)="addComment()"
     >
-      Cancel
+      Add comment
     </button>
-  </div>
-</div>
+  </ng-container>
 
-<div
-  *ngFor="let comment of comments"
-  class="d-flex align-items-center"
-  style="height: 50px"
->
-  <p class="mb-0 text-light">{{ comment.text }}</p>
-  <button
-    *ngIf="isCommentOwner(comment)"
-    class="btn ms-3"
-    style="color: red"
-    (click)="deleteComment(comment.commentId)"
+  <div *ngIf="isAddingComment" class="d-flex flex-column">
+    <input
+      type="text"
+      [(ngModel)]="comment.text"
+      placeholder="Your comment..."
+      class="w-50"
+    />
+    <div class="d-flex mt-2">
+      <button
+        class="btn btn-primary"
+        (click)="saveComment()"
+        style="width: 70px"
+      >
+        Save
+      </button>
+      <button
+        class="btn btn-danger ms-2"
+        (click)="cancelComment()"
+        style="width: 70px"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+
+  <div
+    *ngFor="let comment of comments"
+    class="d-flex align-items-center"
+    style="height: 50px"
+    #normalView
   >
-    <i class="fas fa-trash"></i>
-  </button>
+    <p class="mb-0 text-light" *ngIf="!isEditingComment">{{ comment.text }}</p>
+    <ng-container *ngIf="!isEditingComment">
+      <button
+        *ngIf="isCommentOwner(comment)"
+        class="btn"
+        style="color: red"
+        (click)="deleteComment(comment.commentId)"
+      >
+        <i class="fas fa-trash"></i>
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="!isEditingComment">
+      <button
+        *ngIf="isCommentOwner(comment)"
+        class="btn"
+        style="color: red"
+        (click)="edit(comment)"
+      >
+        Edit
+      </button>
+    </ng-container>
+
+    <!-- EDIT REZIM  -->
+
+    <ng-container *ngIf="isEditingComment" ; else normalView>
+      <div *ngIf="editingCommentId === comment.commentId">
+        <input type="text" [(ngModel)]="comment.text" />
+        <div class="d-flex flex-column">
+          <button
+            class="btn"
+            style="color: rgb(170, 221, 170)"
+            (click)="saveEdit(comment)"
+          >
+            Save
+          </button>
+          <button class="btn" style="color: red" (click)="cancelEdit()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </div>
