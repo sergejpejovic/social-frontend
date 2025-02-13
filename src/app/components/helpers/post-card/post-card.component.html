@@ -3,52 +3,55 @@
     <button
       (click)="addPost()"
       *ngIf="!isCreatingPost"
-      class="btn btn-light ms-2"
+      class="btn btn-primary ms-2 z-1"
     >
       Create post
     </button>
 
     <div
       *ngIf="isCreatingPost"
-      class="d-flex flex-column w-25 justify-content-center align-items-center"
+      class="d-flex flex-column justify-content-center align-items-center"
     >
       <input
         type="text"
         placeholder="Post text..."
         [(ngModel)]="post.text"
-        class="w-75 mb-3"
+        class="form-control w-75 mb-3 z-1"
       />
       <input
         type="file"
-        class="text-light w-75"
+        class="text-light w-75 z-1"
         (change)="setUploadedFile($event)"
       />
-      <small>Kreirano: {{ post.createdTime | date : "medium" }}</small>
-      <div class="d-flex gap-3">
+      <small class="text-light"
+        >Kreirano: {{ post.createdTime | date : "medium" }}</small
+      >
+      <div class="d-flex gap-3 mt-3">
         <button
           (click)="createPost(post)"
-          class="btn btn-secondary"
-          style="width: 70px"
+          class="btn btn-success z-1"
+          style="width: 100px"
         >
           Save
         </button>
         <button
           (click)="cancelCreating()"
-          class="btn btn-danger"
-          style="width: 70px"
+          class="btn btn-danger z-1"
+          style="width: 100px"
         >
           Cancel
         </button>
       </div>
     </div>
   </div>
+
   <div
     *ngFor="let post of posts"
-    class="post-card mb-3 border-dark-700 w-50 rounded"
+    class="post-card mb-3 border-dark-700 w-lg-50 rounded"
     style="margin: 0 auto; background-color: #383c42"
   >
-    <div class="card-body d-flex align-items-center flex-column">
-      <!-- EDIT REZIM POSTA -->
+    <div class="card-body d-flex align-items-center flex-column p-4">
+      <!-- EDIT REŽIM POSTA -->
       <div *ngIf="editingPostId === post.id; else normalView">
         <input class="form-control mb-2" [(ngModel)]="post.text" />
         <label class="text-light me-2">Add picture</label>
@@ -58,13 +61,13 @@
           class="text-light"
         />
         <button
-          class="btn btn-secondary mt-2"
+          class="btn btn-warning mt-2"
           (click)="saveEdit(post)"
           [disabled]="!post.text"
         >
-          Save
+          Save Changes
         </button>
-        <button class="btn btn-danger ms-2 mt-2" (click)="cancelEditing()">
+        <button class="btn btn-secondary ms-2 mt-2" (click)="cancelEditing()">
           Cancel
         </button>
       </div>
@@ -90,12 +93,12 @@
           }}</small>
         </p>
 
-        <div class="d-flex">
+        <div class="d-flex align-items-center">
           <app-post-like [post]="post" [user]="user"></app-post-like>
 
           <button
             (click)="toggleCommentVisibility(post.id)"
-            class="bg-transparent border-0 fs-5"
+            class="bg-transparent border-0 fs-5 text-light"
           >
             💬
           </button>
@@ -105,23 +108,24 @@
           *ngIf="isCommentVisible[post.id]"
           [post]="post"
         ></app-post-comment>
-        <div class="d-flex">
+
+        <div
+          class="d-flex justify-content-center align-items-center mt-3 w-100"
+        >
           <button
             *ngIf="isPostOwner(post)"
-            class="btn mt-2 fs-5"
-            style="color: #fff"
+            class="btn btn-outline-primary me-3"
             (click)="startEditing(post)"
           >
-            <i class="fas fa-edit"></i>
+            <i class="fas fa-edit"></i> Edit
           </button>
 
           <button
             *ngIf="isPostOwner(post)"
-            class="btn mt-2 fs-5"
-            style="color: red"
+            class="btn btn-outline-danger"
             (click)="deletePost(post.id)"
           >
-            <i class="fas fa-trash"></i>
+            <i class="fas fa-trash"></i> Delete
           </button>
         </div>
       </ng-template>

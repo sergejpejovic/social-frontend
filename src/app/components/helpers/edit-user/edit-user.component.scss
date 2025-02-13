@@ -5,3 +5,9 @@
 input.bg-d::placeholder {
   color: white;
 }
+
+@media (min-width: 992px) {
+  .w-lg-50 {
+    width: 50% !important;
+  }
+}

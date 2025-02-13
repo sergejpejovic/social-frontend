@@ -1,7 +1,7 @@
 <div class="d-flex flex-column align-items-center justify-content-center">
   <ng-container *ngIf="!isEditingComment">
     <button
-      class="btn btn-light mt-2"
+      class="btn btn-light mt-3 mb-2"
       *ngIf="!isAddingComment"
       (click)="addComment()"
     >
@@ -14,11 +14,11 @@
       type="text"
       [(ngModel)]="comment.text"
       placeholder="Your comment..."
-      class="w-50"
+      class="w-100 mt-2"
     />
-    <div class="d-flex mt-2">
+    <div class="d-flex justify-content-center mt-3">
       <button
-        class="btn btn-primary"
+        class="btn btn-secondary"
         (click)="saveComment()"
         style="width: 70px"
       >
@@ -41,27 +41,28 @@
     #normalView
   >
     <p class="mb-0 text-light" *ngIf="!isEditingComment">{{ comment.text }}</p>
-    <ng-container *ngIf="!isEditingComment">
-      <button
-        *ngIf="isCommentOwner(comment)"
-        class="btn"
-        style="color: red"
-        (click)="deleteComment(comment.commentId)"
-      >
-        <i class="fas fa-trash"></i>
-      </button>
-    </ng-container>
+    <div class="d-flex justify-content-center align-items-center ms-3">
+      <ng-container *ngIf="!isEditingComment">
+        <button
+          *ngIf="isCommentOwner(comment)"
+          class="btn fs-5"
+          style="color: red"
+          (click)="deleteComment(comment.commentId)"
+        >
+          <i class="fas fa-trash"></i>
+        </button>
+      </ng-container>
 
-    <ng-container *ngIf="!isEditingComment">
-      <button
-        *ngIf="isCommentOwner(comment)"
-        class="btn"
-        style="color: red"
-        (click)="edit(comment)"
-      >
-        Edit
-      </button>
-    </ng-container>
+      <ng-container *ngIf="!isEditingComment">
+        <button
+          *ngIf="isCommentOwner(comment)"
+          (click)="edit(comment)"
+          class="btn text-light fs-5"
+        >
+          <i class="fas fa-edit"></i>
+        </button>
+      </ng-container>
+    </div>
 
     <!-- EDIT REZIM  -->
 
