@@ -30,4 +30,8 @@ export class UserService {
   getAllUsers() {
     return this.http.get<User>('http://localhost:4000/users');
   }
+
+  getUserByEmail(email: string) {
+    return this.http.post('http://localhost:4000/users/check-email', email);
+  }
 }

@@ -23,9 +23,6 @@
         class="text-light w-75 z-1"
         (change)="setUploadedFile($event)"
       />
-      <small class="text-light"
-        >Kreirano: {{ post.createdTime | date : "medium" }}</small
-      >
       <div class="d-flex gap-3 mt-3">
         <button
           (click)="createPost(post)"

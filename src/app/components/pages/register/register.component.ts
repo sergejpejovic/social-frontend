@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AdditionalsService } from '../../../services/additionals.service';
 import { Countries } from '../../../models/Countries';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private additionalsService: AdditionalsService,
+    private userService: UserService,
     private router: Router
   ) {}
 
@@ -27,6 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    console.log(this.user);
     if (
       !this.user.name ||
       !this.user.surname ||
@@ -38,19 +41,26 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    if (this.user.email) {
-      alert('Email is already in use');
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+    if (!emailPattern.test(this.user.email)) {
+      alert('Email is not in valid format');
+      return;
     }
 
     if (this.user.password.length < 3) {
       alert('Password is too short...');
+      return;
     }
 
     this.authService.register(this.user).subscribe((data: any) => {
       if (data.success) {
-        alert('Uspjesno ste se registrovali!');
+        alert('Success!');
         localStorage.setItem('user-token', data.token);
         this.router.navigateByUrl('/auth/login');
+      } else {
+        console.log('Registration failed:', data.msg);
+        alert('Email already in use! ');
       }
     });
   }
