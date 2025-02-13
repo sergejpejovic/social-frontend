@@ -23,4 +23,11 @@ export class LikeService {
   getNumberOfLikes(postId: number) {
     return this.http.get(`http://localhost:4000/likes/post/${postId}/likes`);
   }
+
+  checkIfUserLiked(postId: number, userId: number) {
+    return this.http.post('http://localhost:4000/likes/check', {
+      postId,
+      userId,
+    });
+  }
 }

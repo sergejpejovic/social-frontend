@@ -17,8 +17,22 @@ export class PostLikeComponent implements OnInit {
   likesNumber: number = 0;
 
   constructor(private likeService: LikeService) {}
+
   ngOnInit(): void {
     this.loadLikes();
+    this.checkIfLiked();
+  }
+
+  checkIfLiked() {
+    this.likeService
+      .checkIfUserLiked(this.post.id, this.user.id)
+      .subscribe((data: any) => {
+        if (data) {
+          this.isLiked = true;
+        } else {
+          this.isLiked = false;
+        }
+      });
   }
 
   loadLikes() {
@@ -34,8 +48,8 @@ export class PostLikeComponent implements OnInit {
   like(post: Post, user: User) {
     this.likeService.createLike(post.id, user.id).subscribe((data: any) => {
       if (data.success) {
-        this.isLiked = true;
         console.log('Uspjesno dodat like');
+        this.isLiked = true;
         this.loadLikes();
       }
     });

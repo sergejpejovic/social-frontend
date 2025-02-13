@@ -31,13 +31,21 @@
       />
       <input
         type="password"
-        class="form-control bg-d text-light w-100 mb-3"
+        class="form-control bg-d text-light w-100 mb-1"
         [(ngModel)]="user.password"
         name="password"
         placeholder="******"
+        required
+        #password="ngModel"
       />
+      <div
+        *ngIf="password?.invalid && password?.touched"
+        class="text-danger mb-2"
+      >
+        Password is required.
+      </div>
       <select
-        class="form-control bg-d text-light w-100 mb-3"
+        class="form-control bg-d text-light w-100 mb-3 mt-2"
         name="country"
         [(ngModel)]="user.countryId"
       >
@@ -60,7 +68,11 @@
         />
       </div>
       <div class="d-flex mt-1">
-        <button class="btn btn-secondary me-3" (click)="updateUser()">
+        <button
+          class="btn btn-secondary me-3"
+          (click)="updateUser()"
+          [disabled]="!user.password"
+        >
           Save
         </button>
         <button routerLink="/user/{{ user.id }}" class="btn btn-danger">

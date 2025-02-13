@@ -8,10 +8,6 @@ import { User } from '../models/User';
 export class UserService {
   constructor(private http: HttpClient) {}
 
-  // createUser(user: User) {
-  //   return this.http.post(`http://localhost:4000/users`, user);
-  // }
-
   getUserById(id: number) {
     return this.http.get<User>(`http://localhost:4000/users/${id}`);
   }
@@ -19,7 +15,6 @@ export class UserService {
   updateUser(user: User) {
     return this.http.put(`http://localhost:4000/users/${user.id}`, {
       ...user,
-      dateOfBirth: new Date(user.dateOfBirth).toISOString().split('T')[0],
     });
   }
 
@@ -29,9 +24,5 @@ export class UserService {
 
   getAllUsers() {
     return this.http.get<User>('http://localhost:4000/users');
-  }
-
-  getUserByEmail(email: string) {
-    return this.http.post('http://localhost:4000/users/check-email', email);
   }
 }

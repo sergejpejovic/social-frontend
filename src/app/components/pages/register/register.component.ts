@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { AdditionalsService } from '../../../services/additionals.service';
 import { Countries } from '../../../models/Countries';
-import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +19,6 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private additionalsService: AdditionalsService,
-    private userService: UserService,
     private router: Router
   ) {}
 
