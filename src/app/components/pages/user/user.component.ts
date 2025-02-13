@@ -16,6 +16,7 @@ import { AuthService } from '../../../services/auth.service';
 export class UserComponent implements OnInit {
   user: User = new User();
   post: Post[] = [];
+
   isLoggedIn: boolean = false;
   userIdFromToken: number | null = null;
 
