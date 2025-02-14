@@ -72,6 +72,10 @@
       <!-- NORMALNI PRIKAZ POSTA -->
       <ng-template #normalView>
         <p class="card-text text-light">
+          Posted by: {{ post.userName }} {{ post.userLastName }}
+        </p>
+
+        <p class="card-text text-light">
           {{ post.text }}
         </p>
 
