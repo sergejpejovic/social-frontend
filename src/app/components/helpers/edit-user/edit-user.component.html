@@ -5,7 +5,10 @@
     <h1 class="text-light fs-3 mb-4">Edit your profile</h1>
   </div>
   <div class="container">
-    <form class="d-flex flex-column align-items-center w-100 w-lg-50 mx-auto">
+    <form
+      (ngSubmit)="updateUser()"
+      class="d-flex flex-column align-items-center w-100 w-lg-50 mx-auto"
+    >
       <div class="d-flex w-100">
         <input
           type="text"
@@ -70,12 +73,12 @@
       <div class="d-flex mt-1">
         <button
           class="btn btn-secondary me-3"
-          (click)="updateUser()"
+          type="submit"
           [disabled]="!user.password"
         >
           Save
         </button>
-        <button routerLink="/user/{{ user.id }}" class="btn btn-danger">
+        <button type="button" class="btn btn-danger" (click)="cancel()">
           Cancel
         </button>
       </div>

@@ -2,7 +2,7 @@ import { Component, Host, Input } from '@angular/core';
 import { Post } from '../../../models/Post';
 import { User } from '../../../models/User';
 import { PostService } from '../../../services/post.service';
-import { UserComponent } from '../../pages/user/user.component';
+import { UserComponent } from '../../pages/home/user.component';
 
 @Component({
   selector: 'app-post-card',

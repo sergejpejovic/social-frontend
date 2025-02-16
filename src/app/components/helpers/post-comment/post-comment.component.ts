@@ -53,13 +53,12 @@ export class PostCommentComponent implements OnInit {
 
     this.comment.postId = this.post.id;
     this.comment.userId = userData.id;
-    console.log(this.comment.userId);
+
     this.commentService.createComment(this.comment).subscribe((data: any) => {
       if (data.success) {
         this.loadComments();
         this.isAddingComment = false;
         this.comment = data;
-        alert('Uspjesno dodat komenar');
       }
     });
   }

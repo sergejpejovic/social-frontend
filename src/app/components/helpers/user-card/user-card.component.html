@@ -2,12 +2,14 @@
   <div
     class="d-flex flex-column align-items-center user-card bg-dark border-dark-700 p-4 rounded shadow-lg mt-lg-5 ms-lg-5 mt-3 ms-3"
   >
-    <img
-      [src]="user.mediaLocation"
-      class="w-50 mb-3 rounded-circle border border-4 border-light mx-auto d-block"
-    />
+    <div *ngIf="user.mediaLocation">
+      <img
+        [src]="user.mediaLocation"
+        class="w-50 mb-3 rounded-circle border border-4 border-light mx-auto d-block"
+      />
+    </div>
 
-    <div class="card-title text-light fw-bold mb-2">
+    <div class="card-title text-light fw-bold mb-2 text-center">
       {{ user.name }} {{ user.surname }}
     </div>
     <div class="card-text text-light text-center">

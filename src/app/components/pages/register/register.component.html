@@ -7,121 +7,154 @@
       <p class="small text-light opacity-75">
         Please fill out signup form to join social
       </p>
-      <div class="row mb-3">
+      <div class="row">
         <div class="col-6">
-          <div class="input-group">
-            <span
-              class="input-group-text bg-gray-800 border-dark-700 text-light"
+          <div class="mb-3 text-start">
+            <label for="firstName" class="form-label text-white"
+              >First name:
+            </label>
+            <div class="input-group">
+              <span
+                class="input-group-text bg-gray-800 border-dark-700 text-light"
+              >
+                <i class="fas fa-user"></i>
+              </span>
+              <input
+                type="text"
+                id="firstName"
+                class="form-control bg-gray-800 border-dark-700 text-light"
+                placeholder="Jhon"
+                [(ngModel)]="user.name"
+                name="firstName"
+                required
+                #firstName="ngModel"
+              />
+            </div>
+            <div
+              *ngIf="firstName?.invalid && firstName?.touched"
+              class="text-danger"
             >
-              <i class="fas fa-user"></i>
-            </span>
-            <input
-              type="text"
-              class="form-control bg-gray-800 border-dark-700 text-light"
-              placeholder="First name"
-              [(ngModel)]="user.name"
-              name="firstName"
-              required
-              #firstName="ngModel"
-            />
-          </div>
-          <div
-            *ngIf="firstName?.invalid && firstName?.touched"
-            class="text-danger"
-          >
-            First name is required.
+              First name is required.
+            </div>
           </div>
         </div>
         <div class="col-6">
-          <div class="input-group">
-            <span
-              class="input-group-text bg-gray-800 border-dark-700 text-light"
+          <div class="text-start">
+            <label for="lastName" class="form-label text-white"
+              >Last name:
+            </label>
+            <div class="input-group">
+              <span
+                class="input-group-text bg-gray-800 border-dark-700 text-light"
+              >
+                <i class="fas fa-user"></i>
+              </span>
+              <input
+                type="text"
+                id="lastName"
+                class="form-control bg-gray-800 border-dark-700 text-light"
+                placeholder="Doe"
+                [(ngModel)]="user.surname"
+                name="lastName"
+                required
+                #lastName="ngModel"
+              />
+            </div>
+            <div
+              *ngIf="lastName?.invalid && lastName?.touched"
+              class="text-danger"
             >
-              <i class="fas fa-user"></i>
-            </span>
-            <input
-              type="text"
-              class="form-control bg-gray-800 border-dark-700 text-light"
-              placeholder="Last name"
-              [(ngModel)]="user.surname"
-              name="lastName"
-              required
-              #lastName="ngModel"
-            />
-          </div>
-          <div
-            *ngIf="lastName?.invalid && lastName?.touched"
-            class="text-danger"
-          >
-            Last name is required.
+              Last name is required.
+            </div>
           </div>
         </div>
       </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text bg-gray-800 border-dark-700 text-light">
-          <i class="fas fa-envelope"></i>
-        </span>
-        <input
-          type="email"
-          class="form-control bg-gray-800 border-dark-700 text-light"
-          placeholder="Email address"
-          [(ngModel)]="user.email"
-          name="emailAddress"
-          required
-          #emailAddress="ngModel"
-        />
-      </div>
-      <div
-        *ngIf="emailAddress?.invalid && emailAddress?.touched"
-        class="text-danger"
-      >
-        Email address is required.
-      </div>
-      <div class="input-group mb-3">
-        <span class="input-group-text bg-gray-800 border-dark-700 text-light">
-          <i class="fas fa-globe"></i>
-        </span>
-
-        <select
-          class="form-control bg-gray-800 border-dark-700 text-light"
-          name="country"
-          [(ngModel)]="user.countryId"
+      <div class="mb-2 text-start">
+        <label for="emailAddress" class="form-label text-white"
+          >Email address:
+        </label>
+        <div class="input-group">
+          <span class="input-group-text bg-gray-800 border-dark-700 text-light">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <input
+            type="email"
+            id="emailAddress"
+            class="form-control bg-gray-800 border-dark-700 text-light"
+            placeholder="JhonDoe@gmail.com"
+            [(ngModel)]="user.email"
+            name="emailAddress"
+            required
+            #emailAddress="ngModel"
+          />
+        </div>
+        <div
+          *ngIf="emailAddress?.invalid && emailAddress?.touched"
+          class="text-danger"
         >
-          <option *ngFor="let country of countries" [ngValue]="country.id">
-            {{ country.naziv }}
-          </option>
-        </select>
+          Email address is required.
+        </div>
       </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text bg-gray-800 border-dark-700 text-light">
-          <i class="fas fa-calendar"></i>
-        </span>
-        <input
-          type="date"
-          class="form-control bg-gray-800 border-dark-700 text-light"
-          [(ngModel)]="user.dateOfBirth"
-          name="dateOfBirth"
-        />
+      <div class="mb-2 text-start">
+        <label for="country" class="form-label text-white">Country: </label>
+        <div class="input-group">
+          <span class="input-group-text bg-gray-800 border-dark-700 text-light">
+            <i class="fas fa-globe"></i>
+          </span>
+          <select
+            id="country"
+            class="form-control bg-gray-800 border-dark-700 text-light"
+            name="country"
+            [(ngModel)]="user.countryId"
+          >
+            <option *ngFor="let country of countries" [ngValue]="country.id">
+              {{ country.naziv }}
+            </option>
+          </select>
+        </div>
       </div>
 
-      <div class="input-group mb-3">
-        <span class="input-group-text bg-gray-800 border-dark-700 text-light">
-          <i class="fas fa-lock"></i>
-        </span>
-        <input
-          type="password"
-          class="form-control bg-gray-800 border-dark-700 text-light"
-          placeholder="Password"
-          [(ngModel)]="user.password"
-          name="password"
-          required
-          #password="ngModel"
-        />
+      <div class="mb-2 text-start">
+        <label for="dateOfBirth" class="form-label text-white"
+          >Date of Birth:
+        </label>
+        <div class="input-group">
+          <span class="input-group-text bg-gray-800 border-dark-700 text-light">
+            <i class="fas fa-calendar"></i>
+          </span>
+          <input
+            type="date"
+            id="dateOfBirth"
+            class="form-control bg-gray-800 border-dark-700 text-light"
+            [(ngModel)]="user.dateOfBirth"
+            name="dateOfBirth"
+          />
+        </div>
       </div>
-      <div *ngIf="password?.invalid && password?.touched" class="text-danger">
-        Password is required.
+
+      <div class="mb-3 text-start">
+        <label for="password" class="form-label text-white">Password: </label>
+        <div class="input-group">
+          <span class="input-group-text bg-gray-800 border-dark-700 text-light">
+            <i class="fas fa-lock"></i>
+          </span>
+          <input
+            type="password"
+            id="password"
+            class="form-control bg-gray-800 border-dark-700 text-light"
+            placeholder="*******"
+            [(ngModel)]="user.password"
+            name="password"
+            required
+            #password="ngModel"
+          />
+        </div>
+        <div *ngIf="password?.invalid && password?.touched" class="text-danger">
+          Password is required.
+        </div>
       </div>
+
       <button
         class="btn btn-gradient-primary w-100 mb-3 mt-2 py-2 fw-bold"
         (click)="register()"

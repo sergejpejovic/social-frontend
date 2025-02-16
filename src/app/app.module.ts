@@ -7,6 +7,8 @@ import { PagesModule } from './components/pages/pages.module';
 import { PagesRoutingModule } from './components/pages/pages-routing.module';
 import { HelpersModule } from './components/helpers/helpers.module';
 import { jwtInterceptor } from './interceptors/jwt.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +19,8 @@ import { jwtInterceptor } from './interceptors/jwt.interceptor';
     HelpersModule,
     HttpClientModule,
     PagesRoutingModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

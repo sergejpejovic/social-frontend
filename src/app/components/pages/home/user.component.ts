@@ -5,6 +5,7 @@ import { UserService } from '../../../services/user.service';
 import { Post } from '../../../models/Post';
 import { PostService } from '../../../services/post.service';
 import { AuthService } from '../../../services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-user',
@@ -16,7 +17,6 @@ import { AuthService } from '../../../services/auth.service';
 export class UserComponent implements OnInit {
   user: User = new User();
   post: Post[] = [];
-
   isLoggedIn: boolean = false;
   userIdFromToken: number | null = null;
 
@@ -25,6 +25,7 @@ export class UserComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private postService: PostService,
     private authService: AuthService,
+    private spinner: NgxSpinnerService,
     private router: Router
   ) {}
 
@@ -33,14 +34,18 @@ export class UserComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((paramsData) => {
       const userIdFromUrl = Number(paramsData[`id`]);
+      this.spinner.show();
 
-      this.userService.getUserById(userIdFromUrl).subscribe((data: any) => {
-        this.user = data;
+      setTimeout(() => {
+        this.userService.getUserById(userIdFromUrl).subscribe((data: any) => {
+          this.user = data;
 
-        this.postService.getAllPosts().subscribe((data: any) => {
-          this.post = data;
+          this.postService.getAllPosts().subscribe((data: any) => {
+            this.post = data;
+            this.spinner.hide();
+          });
         });
-      });
+      }, 1000);
     });
   }
 }

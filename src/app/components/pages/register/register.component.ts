@@ -53,7 +53,6 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(this.user).subscribe((data: any) => {
       if (data.success) {
-        alert('Success!');
         localStorage.setItem('user-token', data.token);
         this.router.navigateByUrl('/auth/login');
       } else {

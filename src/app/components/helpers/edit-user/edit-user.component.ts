@@ -51,7 +51,6 @@ export class EditUserComponent implements OnInit {
 
           this.userService.updateUser(this.user).subscribe((data: any) => {
             if (data.success) {
-              console.log(this.user.mediaLocation);
               this.router.navigateByUrl(`/user/${this.user.id}`);
             }
           });
@@ -67,6 +66,10 @@ export class EditUserComponent implements OnInit {
 
   setUploadedFile(event: any) {
     this.fileToUpload = event.target.files[0];
+  }
+
+  cancel() {
+    this.router.navigateByUrl(`/user/${this.user.id}`);
   }
 
   getAdditionals() {
