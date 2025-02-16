@@ -14,7 +14,7 @@ import { AuthService } from '../../../services/auth.service';
 export class PostCommentComponent implements OnInit {
   comments: CommentsModel[] = [];
   comment: CommentsModel = new CommentsModel();
-  @Input('post') post: Post;
+  @Input() post: Post;
   isAddingComment: boolean = false;
   isEditingComment: boolean = false;
   editingCommentId: number | null = null;
