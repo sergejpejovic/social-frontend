@@ -48,7 +48,6 @@ export class PostLikeComponent implements OnInit {
   like(post: Post, user: User) {
     this.likeService.createLike(post.id, user.id).subscribe((data: any) => {
       if (data.success) {
-        console.log('Uspjesno dodat like');
         this.isLiked = true;
         this.loadLikes();
       }
@@ -60,7 +59,6 @@ export class PostLikeComponent implements OnInit {
       .deletePostLikes(post.id, user.id)
       .subscribe((data: any) => {
         if (data.success) {
-          console.log('Uspjeno obrisan like');
           this.isLiked = false;
           this.likesNumber--;
         }

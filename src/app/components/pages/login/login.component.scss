@@ -1,7 +1,3 @@
-.bg-gray-900 {
-  background-color: #111827;
-}
-
 .bg-gray-800 {
   background-color: #1f2937;
 }
@@ -12,22 +8,6 @@
 
 .text-light {
   color: #f3f4f6;
-}
-
-.opacity-75 {
-  opacity: 0.75;
-}
-
-.btn-gradient-primary {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  border: none;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.btn-gradient-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
 .bg-gray-800::placeholder {
@@ -41,13 +21,4 @@
   background-color: #1f2937 !important;
   color: #f3f4f6 !important;
   outline: none !important;
-}
-
-.link-primary {
-  color: #818cf8;
-  transition: color 0.2s ease;
-}
-
-.link-primary:hover {
-  color: #6366f1;
 }

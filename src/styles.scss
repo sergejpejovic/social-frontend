@@ -1,1 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
+.bg-gray-900 {
+  background-color: #111827;
+}
+
+.bg-gray-800 {
+  background-color: #1f2937;
+}
+
+.bg-gray {
+  background-color: #d6d8d7;
+}
+
+.border-dark-700 {
+  border-color: #374151;
+}
+
+.text-light {
+  color: #f3f4f6;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+}
+
+.card-text {
+  font-size: 1.1rem;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.btn-gradient-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.form-control:focus {
+  border-color: #374151 !important;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.5) !important;
+  background-color: #1f2937 !important;
+  color: #f3f4f6 !important;
+  outline: none !important;
+}
+
+.link-primary {
+  color: #818cf8;
+  transition: color 0.2s ease;
+}
+
+.link-primary:hover {
+  color: #6366f1;
+}
+
+.post-card {
+  position: relative;
+  z-index: 1;
+}

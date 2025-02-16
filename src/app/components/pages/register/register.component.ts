@@ -27,7 +27,6 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    console.log(this.user);
     if (
       !this.user.name ||
       !this.user.surname ||
