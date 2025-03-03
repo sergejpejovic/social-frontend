@@ -16,7 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class UserComponent implements OnInit {
   user: User = new User();
-  post: Post[] = [];
+  posts: Post[] = [];
   isLoggedIn: boolean = false;
   userIdFromToken: number | null = null;
 
@@ -41,7 +41,7 @@ export class UserComponent implements OnInit {
           this.user = data;
 
           this.postService.getAllPosts().subscribe((data: any) => {
-            this.post = data;
+            this.posts = data;
             this.spinner.hide();
           });
         });

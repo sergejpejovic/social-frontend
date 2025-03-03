@@ -14,16 +14,22 @@ export class PostCardComponent {
   @Input() posts: Post[] = [];
   post: Post = new Post();
   @Input() user: User = new User();
+  filteredPosts: Post[] = [];
 
   editingPostId: number | null = null;
   isCreatingPost: boolean = false;
   isCommentVisible: boolean[] = [];
   fileToUpload: any = null;
+  searchText: string = '';
 
   constructor(
     private postService: PostService,
     @Host() private userComponent: UserComponent
   ) {}
+
+  ngOnChanges(): void {
+    this.filteredPosts = this.posts;
+  }
 
   toggleCommentVisibility(postId: number) {
     this.isCommentVisible[postId] = !this.isCommentVisible[postId];
@@ -111,5 +117,13 @@ export class PostCardComponent {
 
   setUploadedFile(event: any) {
     this.fileToUpload = event.target.files[0];
+  }
+
+  onSearchTextEntered(searchValue: string) {
+    this.searchText = searchValue.toLowerCase();
+
+    this.filteredPosts = this.posts.filter((p) =>
+      p.userName.toLowerCase().includes(this.searchText)
+    );
   }
 }

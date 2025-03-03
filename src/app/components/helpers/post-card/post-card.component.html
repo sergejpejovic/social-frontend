@@ -1,12 +1,24 @@
+<!-- Button za dodavanje posta -->
 <div class="posts-container flex-grow-1 bg-dark">
-  <div class="d-flex justify-content-center mt-3 mb-3">
+  <div
+    class="d-flex flex-column justify-content-center mt-3 mb-3 align-items-center"
+  >
+    <app-search
+      (searchTextChanged)="onSearchTextEntered($event)"
+      class="mb-1"
+    />
+
     <button
       (click)="addPost()"
       *ngIf="!isCreatingPost"
-      class="btn btn-primary ms-2 z-1"
+      class="btn btn-primary ms-2 mt-2 z-1"
+      style="width: 150px"
     >
       Create post
     </button>
+
+    <!-- Search button -->
+    <div class="posts-container flex-grow-1 bg-dark"></div>
 
     <div
       *ngIf="isCreatingPost"
@@ -43,7 +55,7 @@
   </div>
 
   <div
-    *ngFor="let post of posts"
+    *ngFor="let post of filteredPosts"
     class="post-card mb-3 border-dark-700 w-lg-50 rounded"
     style="margin: 0 auto; background-color: #383c42"
   >

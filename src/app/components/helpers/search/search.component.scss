@@ -1,0 +1,4 @@
+.container {
+  position: relative; /* Dodaj poziciju u slučaju da drugi elementi prekrivaju */
+  z-index: 1000; /* Pobrinite se da je search komponenta ispred drugih */
+}

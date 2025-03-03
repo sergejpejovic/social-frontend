@@ -7,6 +7,7 @@ import { PostLikeComponent } from './post-like/post-like.component';
 import { PostCommentComponent } from './post-comment/post-comment.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { RouterModule } from '@angular/router';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     PostLikeComponent,
     PostCommentComponent,
     EditUserComponent,
+    SearchComponent,
   ],
   imports: [CommonModule, FormsModule, RouterModule],
   exports: [
@@ -23,6 +25,7 @@ import { RouterModule } from '@angular/router';
     PostLikeComponent,
     PostCommentComponent,
     EditUserComponent,
+    SearchComponent,
   ],
 })
 export class HelpersModule {}
