@@ -9,11 +9,11 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   register(user: User) {
-    return this.http.post('https://socialapi.click:4000/auth/register', user);
+    return this.http.post('https://socialapi.click/auth/register', user);
   }
 
   login(user: User) {
-    return this.http.post('https://socialapi.click:4000/auth/login', user);
+    return this.http.post('https://socialapi.click/auth/login', user);
   }
 
   isLoggedIn() {
