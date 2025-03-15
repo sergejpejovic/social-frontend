@@ -55,7 +55,7 @@ export class PostCardComponent {
       this.postService
         .uploadImage(formData)
         .subscribe((fileUploadResponse: any) => {
-          post.mediaLocation = `http://localhost:4000/${fileUploadResponse.filename}`;
+          post.mediaLocation = `https://socialapi.click/${fileUploadResponse.filename}`;
 
           // Ako ima slika radim edit sa slikom
           this.postService.editPost(post.id, post).subscribe((data: any) => {
@@ -101,7 +101,7 @@ export class PostCardComponent {
       .uploadImage(formData)
       .subscribe((fileUploadResponse: any) => {
         this.post.mediaLocation =
-          this.post.mediaLocation = `http://localhost:4000/${fileUploadResponse.filename}`;
+          this.post.mediaLocation = `https://socialapi.click/${fileUploadResponse.filename}`;
 
         post.userId = this.user.id;
         this.postService.createPost(post).subscribe((data: any) => {

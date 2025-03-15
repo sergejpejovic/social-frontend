@@ -47,7 +47,7 @@ export class EditUserComponent implements OnInit {
       this.userService
         .uploadImage(formData)
         .subscribe((fileUploadResponse: any) => {
-          this.user.mediaLocation = `http://localhost:4000/${fileUploadResponse.filename}`;
+          this.user.mediaLocation = `https://socialapi.click/${fileUploadResponse.filename}`;
 
           this.userService.updateUser(this.user).subscribe((data: any) => {
             if (data.success) {
