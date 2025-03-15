@@ -24,6 +24,19 @@
 }
 
 .form {
-  min-height: 100vh;
   overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 100% !important;
+    padding: 20px;
+  }
+}
+
+/* Za tablete i veće ekrane */
+@media (min-width: 576px) {
+  .container {
+    max-width: 450px;
+  }
 }
