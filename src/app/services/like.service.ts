@@ -9,23 +9,23 @@ export class LikeService {
 
   createLike(postId: number, userId: number) {
     return this.http.post(
-      `http://localhost:4000/likes/${postId}/${userId}`,
+      `https://socialapi.click/likes/${postId}/${userId}`,
       {}
     );
   }
 
   deletePostLikes(postId: number, userId: number) {
     return this.http.delete(
-      `http://localhost:4000/likes/${postId}/dislike/${userId}`
+      `https://socialapi.click/likes/${postId}/dislike/${userId}`
     );
   }
 
   getNumberOfLikes(postId: number) {
-    return this.http.get(`http://localhost:4000/likes/post/${postId}/likes`);
+    return this.http.get(`https://socialapi.click/likes/post/${postId}/likes`);
   }
 
   checkIfUserLiked(postId: number, userId: number) {
-    return this.http.post('http://localhost:4000/likes/check', {
+    return this.http.post('https://socialapi.click/likes/check', {
       postId,
       userId,
     });

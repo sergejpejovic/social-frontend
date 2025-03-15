@@ -9,28 +9,28 @@ export class PostService {
   constructor(private http: HttpClient) {}
 
   getAllPosts() {
-    return this.http.get<Post[]>('http://localhost:4000/posts');
+    return this.http.get<Post[]>('https://socialapi.click/posts');
   }
 
   getPostsByUserId(id: number) {
-    return this.http.get<Post[]>(`http://localhost:4000/posts/user/${id}`);
+    return this.http.get<Post[]>(`https://socialapi.click/posts/user/${id}`);
   }
 
   createPost(post: Post) {
-    return this.http.post('http://localhost:4000/posts', post);
+    return this.http.post('https://socialapi.click/posts', post);
   }
 
   editPost(id: number, post: Post) {
-    return this.http.put(`http://localhost:4000/posts/${id}`, {
+    return this.http.put(`https://socialapi.click/posts/${id}`, {
       ...post,
     });
   }
 
   deletePost(id: number) {
-    return this.http.delete(`http://localhost:4000/posts/${id}`);
+    return this.http.delete(`https://socialapi.click/posts/${id}`);
   }
 
   uploadImage(formData: FormData) {
-    return this.http.post('http://localhost:4000/upload', formData);
+    return this.http.post('https://socialapi.click/upload', formData);
   }
 }
