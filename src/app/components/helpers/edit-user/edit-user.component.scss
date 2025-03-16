@@ -6,6 +6,10 @@ input.bg-d::placeholder {
   color: white;
 }
 
+.edit-container {
+  overflow: hidden;
+}
+
 @media (min-width: 992px) {
   .w-lg-50 {
     width: 50% !important;

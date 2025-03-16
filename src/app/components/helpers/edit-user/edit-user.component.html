@@ -1,5 +1,5 @@
 <div
-  class="vh-100 bg-dark d-flex flex-column justify-content-center align-items-center"
+  class="vh-100 bg-dark d-flex flex-column justify-content-center align-items-center w-100 edit-container"
 >
   <div>
     <h1 class="text-light fs-3 mb-4">Edit your profile</h1>
@@ -32,15 +32,18 @@
         name="email"
         placeholder="Email"
       />
-      <input
-        type="password"
-        class="form-control bg-d text-light w-100 mb-1"
-        [(ngModel)]="user.password"
-        name="password"
-        placeholder="******"
-        required
-        #password="ngModel"
-      />
+      <div class="d-flex align-items-center w-100 justify-content-center">
+        <input
+          type="password"
+          class="form-control bg-d text-light w-100 mb-1"
+          [(ngModel)]="user.password"
+          name="password"
+          placeholder="******"
+          required
+          #password="ngModel"
+        />
+        <p class="text-light fs-5 ms-1">*</p>
+      </div>
       <div
         *ngIf="password?.invalid && password?.touched"
         class="text-danger mb-2"
@@ -62,8 +65,8 @@
         [(ngModel)]="user.dateOfBirth"
         name="dateOfBirth"
       />
-      <div class="d-flex mb-3">
-        <label class="text-light me-2">Profile picture: </label>
+      <div class="d-flex mb-3 align-items-center">
+        <label class="text-light me-2 ms-4">Profile picture: </label>
         <input
           type="file"
           class="text-light ms-2"
