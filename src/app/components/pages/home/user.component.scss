@@ -1,0 +1,36 @@
+.home {
+  overflow: hidden;
+}
+
+.toggle-btn {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.posts-container {
+  margin-left: 270px;
+}
+
+@media (max-width: 767px) {
+  .user-card-container {
+    width: 100%;
+  }
+
+  .posts-container {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .toggle-btn {
+    top: 20px;
+    left: 20px;
+  }
+}

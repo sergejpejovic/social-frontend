@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { User } from '../../../models/User';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../../services/user.service';
@@ -6,6 +12,7 @@ import { Post } from '../../../models/Post';
 import { PostService } from '../../../services/post.service';
 import { AuthService } from '../../../services/auth.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-user',
@@ -19,6 +26,8 @@ export class UserComponent implements OnInit {
   posts: Post[] = [];
   isLoggedIn: boolean = false;
   userIdFromToken: number | null = null;
+  userCardVIsibility: boolean = false;
+  isMobile: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -26,7 +35,8 @@ export class UserComponent implements OnInit {
     private postService: PostService,
     private authService: AuthService,
     private spinner: NgxSpinnerService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {}
 
   ngOnInit(): void {
@@ -47,5 +57,22 @@ export class UserComponent implements OnInit {
         });
       }, 1000);
     });
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkIsMobile();
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.checkIsMobile();
+  }
+
+  private checkIsMobile() {
+    this.isMobile = window.innerWidth < 768;
+  }
+
+  toogleUserCardVisibility() {
+    this.userCardVIsibility != this.userCardVIsibility;
   }
 }

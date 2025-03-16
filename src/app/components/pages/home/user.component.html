@@ -6,12 +6,31 @@
 >
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
-<div class="d-flex bg-dark min-vh-100">
-  <div class="user-card-container position-fixed" style="top: 0; left: 0">
+
+<div class="home d-flex bg-dark min-vh-100">
+  <button
+    *ngIf="isMobile"
+    (click)="toogleUserCardVisibility()"
+    class="toggle-btn"
+  >
+    <i
+      class="fas"
+      [class.fa-arrow-right]="!userCardVIsibility"
+      [class.fa-arrow-left]="userCardVIsibility"
+    ></i>
+  </button>
+
+  <div
+    class="user-card-container position-fixed"
+    *ngIf="userCardVIsibility || !isMobile"
+  >
     <app-user-card [user]="user"></app-user-card>
   </div>
 
-  <div class="posts-container flex-grow-1" style="margin-left: 270px">
+  <div
+    class="posts-container flex-grow-1"
+    *ngIf="!userCardVIsibility || !isMobile"
+  >
     <app-post-card [posts]="posts" [user]="user"></app-post-card>
   </div>
 </div>
