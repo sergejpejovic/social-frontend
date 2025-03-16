@@ -73,6 +73,6 @@ export class UserComponent implements OnInit {
   }
 
   toogleUserCardVisibility() {
-    this.userCardVIsibility != this.userCardVIsibility;
+    this.userCardVIsibility = !this.userCardVIsibility;
   }
 }

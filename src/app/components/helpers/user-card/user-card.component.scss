@@ -9,3 +9,17 @@
     width: 90% !important;
   }
 }
+
+@media (max-width: 767px) {
+  .user-card {
+    min-width: 300px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 40% !important;
+    overflow: hidden;
+  }
+
+  .user-container {
+    min-height: 100vh;
+  }
+}
